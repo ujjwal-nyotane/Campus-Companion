@@ -1,9 +1,10 @@
 :root{
     --bg-primary: rgb(0,0,0,1);
-    --bg-secondary:rgba(0,0,0,.1);
+    --bg-secondary:rgba(0,0,0,.25);
     --border:1px solid rgba(0,0,0,.5);
-    --text-primary:rgb(251, 251, 251);
-    --bg-gradient:linear-gradient(130deg,rgba(126, 6, 255),rgba(40, 223, 230),rgb(7, 30, 47));
+    --text-primary: #FFFFFF;
+    --bg-gradient: linear-gradient(135deg, #3B1D87, #1E7C82, #082A33);
+    --placeholder text:
 }
 
 body,html,#root{
@@ -86,13 +87,60 @@ body,html,#root{
     border-bottom: 1px solid white;
     
 }
-.navbar .logo{
+.navbar{
+    display: flex;
     background-color:var(--bg-secondary);
-    border: var(--border);
+     border: var(--border); 
+     justify-content: space-between;
+     position: sticky;
+     z-index: 999;
+}
+
+.navbar .logo {
+    height: 50px;
 }
 .navbar .logo img{
-    width: 100px;
+    height: 100%;
 }
-.navbar .logo .logotext{
-    width: 220px;
+
+.navbar .navigate{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    
 }
+.navbar .navigate div{
+    display: flex;
+    flex-direction: column;
+    margin : 20px;
+    
+}
+.navbar .navigate div img{
+    width:70px;
+}
+.navbar .navigate div span{
+    text-align: center;
+}
+.accesspagetitle{
+    font-size: 75px;
+}
+/* 
+h1, h2 {
+    color: #FFFFFF;
+}
+
+p, span {
+    color: #E5E7EB;
+}
+
+.small-text {
+    color: #C7D2FE;
+}
+
+a {
+    color: #67E8F9;
+}
+
+button {
+    color: #FFFFFF;
+} */
