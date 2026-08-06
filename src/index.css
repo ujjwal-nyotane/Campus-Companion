@@ -1,28 +1,32 @@
 :root{
-    --bg-primary: rgb(14, 17, 81,1);
-    --bg-secondary:rgba(0,0,0,.15);
+    --bg-primary: rgb(0,0,0,1);
+    --bg-secondary:rgba(0,0,0,.1);
     --border:1px solid rgba(0,0,0,.5);
-    --text-primary:rgba(255, 255, 255, 0.886);
-    --bg-gradient:linear-gradient(130deg,rgb(11, 184, 247),rgb(24, 250, 107),rgb(31, 84, 31));
+    --text-primary:rgb(251, 251, 251);
+    --bg-gradient:linear-gradient(130deg,rgba(126, 6, 255),rgba(40, 223, 230),rgb(7, 30, 47));
 }
+
 body,html,#root{
     margin: 0px;
     padding: 0px;
     
+
 }
 .container{
     border: var(--border);
-    background-color: rgba(0,0,0,.15);
+    background-color:var(--bg-secondary);
 }
 .bg-primary { 
   background-color: var(--bg-primary); 
   position: relative; 
   z-index: 0;
+  height: 100vh;
   overflow: hidden;
   
 } 
-.text,span,h1,h2,h3,h4,h5,h6,p{
+.text,span,h1,h2,h3,h4,h5,h6,p,label{
     color: var(--text-primary);
+    font-family: Arial, sans-serif;
 }
 .text-center{
     vertical-align: middle;
@@ -60,4 +64,35 @@ body,html,#root{
 .grid-3{
     display: grid;
     grid-template-columns: repeat(3,1fr);
+}
+/*acessform */
+.accessform *{
+    margin: 20px 5px;
+    font-size: 24px;
+}
+.accessform{
+    margin: 15px 70px;
+}
+
+.accessform input{
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-bottom: 1px solid white;
+    font-size: x-large;
+}
+.accessform input:focus{
+    outline: none;
+    
+    border-bottom: 1px solid white;
+    
+}
+.navbar .logo{
+    background-color:var(--bg-secondary);
+    border: var(--border);
+}
+.navbar .logo img{
+    width: 100px;
+}
+.navbar .logo .logotext{
+    width: 220px;
 }
