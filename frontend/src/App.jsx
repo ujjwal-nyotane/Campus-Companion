@@ -1,9 +1,12 @@
 import Dashboard from "./components/dashboard.jsx";
-import Navbar from "./components/navbar.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App(){
     return (
-        <Navbar/>
+        <>
+            <Navbar/>
+            <Dashboard/>
+        </>
     )
 }
 export default App
