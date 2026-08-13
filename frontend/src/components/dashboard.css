@@ -1,0 +1,11 @@
+.hero{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.details *{
+    margin: 5px;
+}
+.quickdetails{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
