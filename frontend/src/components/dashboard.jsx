@@ -1,7 +1,7 @@
 import './dashboard.css'
 const hero = (
-    <div>
-    <h4>Dashboard</h4>
+    <>
+    <h4 className='pagename'>Dashboard</h4>
     <div className="hero">
         
         <div className="greetings">
@@ -16,7 +16,7 @@ const hero = (
             <h4>Roll no: 2510993689</h4>
         </div>
     </div>
-    </div>
+    </>
 )
 const quickdetails=(
     <div className='quickdetails'>
@@ -46,25 +46,25 @@ const quickaccess = (
         </div>
         <div>
             <h3>Result</h3>
-            <h2>Check your Academic Perfomance</h2>
+            <h5>Check your Academic Perfomance</h5>
         </div>
         <div>
-            <h3>Fees Pending</h3>
-            <h2>₹175000</h2>
+            <h3>Fees Portal</h3>
+            <h5>Quick pay your Fees</h5>
         </div>
         <div>
-            <h3>Upcoming Exam</h3>
-            <h2>Oops on 23-08-2026</h2>
+            <h3>My Info</h3>
+            <h5>View your Information</h5>
         </div>
     </div>
 )
 function Dashboard() {
     return (
-        <div>
+        <>
         {hero}
         {quickdetails}
         {quickaccess}
-        </div>
+        </>
 
     )
 }

@@ -13,6 +13,7 @@
     flex-direction: row;
     gap: 12px;
     text-decoration: none;
+    cursor: default;
 }
 .nav-links{
     display: flex;
@@ -25,6 +26,11 @@
 .nav-links a{
     text-decoration: none;
     border-radius: 6px;
+    cursor: default;
 
+}
+.nav-profile a{
+    cursor: default;
+    text-decoration: none;
 }
 
