@@ -18,6 +18,8 @@
 .nav-links{
     display: flex;
     align-items: center;
+    margin: 0px;
+    padding: 0px;
     gap: 20px;
     list-style: none;
     flex-wrap: nowrap;

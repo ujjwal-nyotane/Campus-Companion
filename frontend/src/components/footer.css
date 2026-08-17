@@ -1,0 +1,13 @@
+.footer{
+    background: rgba(0,0,0,.20);
+}
+.linklogo{
+    width: 30px;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    list-style: none;
+}
+
