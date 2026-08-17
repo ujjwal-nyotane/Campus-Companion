@@ -19,7 +19,7 @@ function Navbar(){
             <li><a href="">Support</a></li>
         </ul>
         <div className="nav-profile">
-            <a href="" >P</a>
+            <a href=""><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
         </div>
 
 

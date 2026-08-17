@@ -32,5 +32,11 @@
 .nav-profile a{
     cursor: default;
     text-decoration: none;
+
+}
+.nav-profile a img{
+    width: 50px;
+    border-radius: 80px;
+    
 }
 

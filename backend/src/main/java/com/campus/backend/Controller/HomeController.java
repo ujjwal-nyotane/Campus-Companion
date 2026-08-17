@@ -11,8 +11,8 @@ public class HomeController {
     public String home() {
         return "Backed Services Online";
     }
-    int id;
-    @GetMapping("/api/{id}")
+    int id=890;
+    @GetMapping("/api/id")
     public String homeworld() {
         return "api"+id;
     }
