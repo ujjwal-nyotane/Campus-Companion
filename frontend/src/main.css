@@ -1,6 +1,9 @@
+:root{
+    --primary-text:#073A64 ;
+}
 body{
     
     margin: 0;
     padding: 0;
-    background: rgba(12,12,12,.15);
+    background-color: ;
 }

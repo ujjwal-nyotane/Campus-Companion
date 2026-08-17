@@ -4,8 +4,8 @@ function Navbar(){
     return (
         <div className='navbar'>
             <a href="index.html" className='navbrand'>
-                <div className='nav-logo'>Logo</div>
-                <div className='nav-title'>CampusCompanion</div>
+                <div className='nav-logo'><img src='./src/assets/logo/logo.png'></img></div>
+                <div className='nav-title'><img src='./src/assets/logo/head.png'></img></div>
             </a>
 
         <ul className='nav-links'>
