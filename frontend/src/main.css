@@ -1,9 +1,14 @@
 :root{
     --primary-text:#073A64 ;
 }
+
+#root{
+    
+    background: linear-gradient(135deg,#cae1ea 0%,#D5EEF5 50%,#F7F7F5 100%);
+}
+
 body{
     
     margin: 0;
     padding: 0;
-    background-color: ;
 }
