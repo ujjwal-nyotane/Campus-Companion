@@ -1,10 +1,12 @@
 .footer{
     background: rgba(0,0,0,.20);
+    padding: 1px 100px;
 }
 .linklogo{
     width: 30px;
 }
 .links{
+    
     display: flex;
     flex-direction: row;
     gap:20px;
