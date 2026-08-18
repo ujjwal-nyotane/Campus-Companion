@@ -1,10 +1,17 @@
 .footer{
-    background: #DCECF1;
+    background:#F7F7F5;
    
     border-top: 1px solid #A8BEC7;
     display: flex;
     justify-content: space-around;
 
+
+}
+.footer h3{
+    color: var(--primary-text);
+}
+.footer h2{
+    color: var(--primary-text);
 }
 .linklogo{
     width: 30px;
@@ -31,7 +38,9 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
-.quickfooterlinks div Link {
+.quickfooterlinks div a{
     color: black;
+    text-decoration: none;
 }

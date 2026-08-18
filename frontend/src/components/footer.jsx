@@ -34,7 +34,7 @@ function Footer(){
     </div>
     <div>
         <h3>Contact Information</h3>
-        <h3>Mail : campuscompanion@tech.in</h3>
+        <h4>Mail : campuscompanion@tech.in</h4>
         
     </div>
     </div>

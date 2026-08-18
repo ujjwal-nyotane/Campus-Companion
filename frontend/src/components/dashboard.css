@@ -10,15 +10,20 @@
     border-radius: 15px;
     margin : 10px;
     padding: 10px;
+
 }
+.greetings *{
+    margin: 20px;
+    padding-bottom: 30px;
+}
+
 .details *{
-    margin: 5px;
+    margin: 15px;
 }
 .quickdetails{
     display: grid;
     grid-template-columns: repeat(4,1fr);
 
-    
 }
 .quickdetails div{
     background: #E8F2F5;
@@ -26,6 +31,10 @@
     border-radius: 15px;
     margin : 10px;
     padding: 10px;
+    text-align: center;
+}
+.quickdetails div h2{
+    font-size: 34px;
 }
 .quickaccess{
     display: grid;
@@ -38,6 +47,41 @@
     margin : 10px;
     padding: 10px;
 }
+
 .quickaccess div:hover{
     transform: scale(1.05);
+}
+
+.notices div{
+    background: #E8F2F5;
+    border: 1px solid #A8BEC7;
+    margin: 10px;
+    padding: 5px 20px;
+    border-radius: 15px;
+
+}
+.notices div {
+    margin: 10px;
+    
+}
+.notices div p{
+    letter-spacing: 1.6px;
+    overflow: hidden;
+    white-space: nowrap ;
+    text-overflow: ellipsis; 
+}
+.notices .viewmore{
+    width:100px;
+    text-align: center;
+    margin-left: 50%;
+    translate:-50%;
+   
+}
+.notices .viewmore a{
+     text-decoration: none;
+     color : var(--primary-text);
+     font-weight: 700;
+}
+.noticeheading{
+    margin-left:10px;
 }

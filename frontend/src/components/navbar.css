@@ -13,7 +13,7 @@
     flex-direction: row;
     
     text-decoration: none;
-    cursor: default;
+    
 }
 .nav-links{
     display: flex;
@@ -34,13 +34,13 @@
 .nav-links a{
     text-decoration: none;
     border-radius: 6px;
-    cursor: default;
+    
     font-size: large;
     color: var(--primary-text);
     font-weight: bold;
 }
 .nav-profile a{
-    cursor: default;
+    
     text-decoration: none;
 
 }
