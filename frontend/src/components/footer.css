@@ -1,6 +1,10 @@
 .footer{
-    background: rgba(0,0,0,.20);
-    padding: 1px 100px;
+    background: #DCECF1;
+   
+    border-top: 1px solid #A8BEC7;
+    display: flex;
+    justify-content: space-around;
+
 }
 .linklogo{
     width: 30px;
@@ -8,8 +12,26 @@
 .links{
     
     display: flex;
+    margin: 0px;
+    padding: 10px 20px;  
     flex-direction: row;
     gap:20px;
     list-style: none;
 }
+.quickfooterlinks{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    margin: 0;
+    padding-bottom: 30px;
 
+
+}
+.quickfooterlinks div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.quickfooterlinks div Link {
+    color: black;
+}

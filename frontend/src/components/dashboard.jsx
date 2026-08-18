@@ -38,6 +38,7 @@ const quickdetails=(
         </div>
     </div>
 )
+
 const quickaccess = (
     <div className='quickaccess'>
         <div>
@@ -58,12 +59,23 @@ const quickaccess = (
         </div>
     </div>
 )
+const notices = (
+    <>
+        <div className='notices'>
+            <div>
+                <h2>Heading</h2>
+                <h5>Context</h5>
+            </div>
+        </div>
+    </>
+)
 function Dashboard() {
     return (
         <>
         {hero}
         {quickdetails}
         {quickaccess}
+        {notices}
         </>
 
     )
