@@ -1,6 +1,7 @@
 import Dashboard from "./components/dashboard.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
+import Profile from "./components/profile.jsx";
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
@@ -8,7 +9,7 @@ function App(){
         <Routes>
         <Route path='/' element={
            <> <Navbar/>
-            <Dashboard/>
+            <Profile/>
             <Footer/>
             </>
         }/>
