@@ -13,3 +13,63 @@ padding:20px ;
     letter-spacing: 1px;
     color:var(--primary-text);
 }
+
+.profile-hero{
+    border: 1px solid var(--primary-text);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 25px;
+    justify-content: space-between;
+}
+
+.p-photo{
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.p-info{
+    padding-bottom: 15px;
+}
+.student-stats{
+    display: flex;
+    gap: 60px;
+    text-align: center;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    padding-right: 65px;
+
+    
+}
+
+.s-stats{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    
+}
+
+.s-stats .d{
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.s-stats .l{
+    font-size: 14px;
+}
+
+.np{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    align-items: center;
+    
+}
