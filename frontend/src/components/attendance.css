@@ -21,11 +21,8 @@
     
 }
 .calender{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+    padding: 10px  80px;
+    text-align: center;
     border-left: 1px  #A8BEC7 solid ;
     
 }
@@ -76,6 +73,29 @@
      border:1px solid #A8BEC7;
 
 }
+
 .attendancetable{
-    width:100%
+    
+    background:#E8F2F5;
+    padding:  10px;
+    border: 1px solid #A8BEC7;
+    border-radius: 15px;
+    margin: 10px;
+    border-spacing: 0px;
+   
+
+}
+.attendancetable th,.attendancetable td{
+    padding: 20px 10px;
+    text-align: center;
+    
+}
+.attendancetable tbody td{
+    
+    border-top: 1px solid #A8BEC7
+}
+.attendancetable tbody tr:hover{
+    background: rgb(0,0,0,.05);
+    
+    
 }

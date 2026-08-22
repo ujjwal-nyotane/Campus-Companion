@@ -49,7 +49,7 @@ function Attendance() {
                     <tbody>
                         <tr>
                             <td>
-                                OOPS
+                                Object Oriented Programming
                             </td>
                             <td>
                                 25CSE0204
@@ -66,53 +66,53 @@ function Attendance() {
                         </tr>
                         <tr>
                             <td>
-                                Stats
+                                Statistics & Data Engineering
                             </td>
                             <td>
                                 25CAI0201
                             </td>
                             <td>
-                                60
+                                62
                             </td>
                             <td>
-                                70
+                                76
                             </td>
                             <td>
-                                10
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                OOPS
-                            </td>
-                            <td>
-                                25CSE0204
-                            </td>
-                            <td>
-                                60
-                            </td>
-                            <td>
-                                70
-                            </td>
-                            <td>
-                                10
+                                12
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                OOPS
+                                Front End Engineering
                             </td>
                             <td>
-                                25CSE0204
+                                25CSE0203
                             </td>
                             <td>
-                                60
+                                40
                             </td>
                             <td>
-                                70
+                                45
                             </td>
                             <td>
-                                10
+                                7
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Database Management System
+                            </td>
+                            <td>
+                                25CSE0209
+                            </td>
+                            <td>
+                                40
+                            </td>
+                            <td>
+                                50
+                            </td>
+                            <td>
+                                4
                             </td>
                         </tr>
                     </tbody>
