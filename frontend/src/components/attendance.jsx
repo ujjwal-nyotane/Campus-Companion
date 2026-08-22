@@ -26,6 +26,98 @@ function Attendance() {
         <div className="attendanceregister">
             <div>
                 <h3>Subject list</h3>
+                <table className="attendancetable">
+                    <thead>
+                        <tr>
+                        <th>
+                            Subject
+                        </th>
+                        <th>
+                            Course Code 
+                        </th>
+                        <th>
+                            Attended Class
+                        </th>
+                        <th>
+                            Total classes
+                        </th>
+                        <th>
+                            Skipable Classes
+                        </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                OOPS
+                            </td>
+                            <td>
+                                25CSE0204
+                            </td>
+                            <td>
+                                60
+                            </td>
+                            <td>
+                                70
+                            </td>
+                            <td>
+                                10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Stats
+                            </td>
+                            <td>
+                                25CAI0201
+                            </td>
+                            <td>
+                                60
+                            </td>
+                            <td>
+                                70
+                            </td>
+                            <td>
+                                10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                OOPS
+                            </td>
+                            <td>
+                                25CSE0204
+                            </td>
+                            <td>
+                                60
+                            </td>
+                            <td>
+                                70
+                            </td>
+                            <td>
+                                10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                OOPS
+                            </td>
+                            <td>
+                                25CSE0204
+                            </td>
+                            <td>
+                                60
+                            </td>
+                            <td>
+                                70
+                            </td>
+                            <td>
+                                10
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
             </div>
             <div className="calender">
                 <h3>August Attendance</h3>
@@ -40,7 +132,7 @@ function Attendance() {
                 </div>
                 <div className="days">
                     {days.map((i)=>{
-                       return i==0? <div style={{visibility:"hidden"}}></div> : <div className="present"><p>{i}</p></div>
+                       return i==0? <div style={{visibility:"hidden"}}></div> : <div className= {Math.random()>.25?"present":"absent"}><p>{i}</p></div>
                     })
                     }
                 </div>
