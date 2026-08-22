@@ -1,0 +1,76 @@
+.attendancehero{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.pagename{
+    margin : 10px;
+    padding: 10px;
+}
+.attendancehero div{
+    background: #E8F2F5;
+    border: 1px solid #A8BEC7;
+    border-radius: 15px;
+    margin : 10px;
+    padding: 10px;
+}
+.attendanceregister{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px 30px;
+
+}
+.calender{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    
+}
+.weekname{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    
+    
+}
+
+.weekname div{
+    width:50px;
+    height: 50px;
+    margin :10px;
+    text-align: center;
+    vertical-align: middle;
+    background: #E8F2F5;
+    border: solid 1px #A8BEC7;
+    border-radius: 15px;
+    
+
+}
+.days{
+    display: grid;
+    
+    vertical-align: center;
+    text-align: center;
+    grid-template-columns: repeat(7,1fr);
+    
+   
+    
+}
+.days div.present {
+ background-color: rgb(0,240,0,.25);
+}
+.days div.absent {
+ background-color: rgb(240,0,0,.25);
+}
+.days div{
+     background-color: #E8F2F5;
+     width:50px;
+    height: 50px;
+     text-align: center;
+    vertical-align: middle;
+     margin: 10px;
+     border-radius: 15px;
+    
+     border:1px solid #A8BEC7;
+
+}

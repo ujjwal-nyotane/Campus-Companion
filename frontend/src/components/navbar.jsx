@@ -1,5 +1,5 @@
 import './navbar.css'
-
+import {Link} from 'react-router-dom'
 function Navbar(){
     return (
         <div className='navbar'>
@@ -9,14 +9,14 @@ function Navbar(){
             </a>
 
         <ul className='nav-links'>
-            <li><a href="">Dashboard</a></li>
-            <li><a href="">My Info</a></li>
-            <li><a href="">Grades</a></li>
-            <li><a href="">Attendance</a></li>
-            <li><a href="">Timetable</a></li>
-            <li><a href="">Fee</a></li>
-            <li><a href="">Hostel</a></li>
-            <li><a href="">Support</a></li>
+            <li><Link to="/">Dashboard</Link></li>
+            <li><Link to="">My Info</Link></li>
+            <li><Link to="">Grades</Link></li>
+            <li><Link to="/attendance">Attendance</Link></li>
+            <li><Link to="">Timetable</Link></li>
+            <li><Link to="">Fee</Link></li>
+            <li><Link to="">Hostel</Link></li>
+            <li><Link to="">Support</Link></li>
         </ul>
         <div className="nav-profile">
             <a href=""><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>

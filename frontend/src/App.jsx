@@ -2,12 +2,25 @@ import Dashboard from "./components/dashboard.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Profile from "./components/profile.jsx";
+import Attendance from './components/attendance.jsx'
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
     return (
         <Routes>
         <Route path='/' element={
+           <> <Navbar/>
+            <Dashboard/>
+            <Footer/>
+            </>
+        }/>
+         <Route path='/attendance' element={
+           <> <Navbar/>
+            <Attendance/>
+            <Footer/>
+            </>
+        }/>
+         <Route path='/profile' element={
            <> <Navbar/>
             <Profile/>
             <Footer/>
