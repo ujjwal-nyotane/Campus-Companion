@@ -1,58 +1,77 @@
-.pagename{
-    margin : 10px;
+.pagename {
+    margin: 10px;
     padding: 10px;
+
 }
-.hero{
+
+.head {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary-text);
+
+}
+
+.hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: #E8F2F5;
     border: 1px solid #A8BEC7;
     border-radius: 15px;
-    margin : 10px;
+    margin: 10px;
     padding: 10px;
 
 }
-.greetings *{
+
+.greetings * {
     margin: 20px;
     padding-bottom: 30px;
 }
 
-.details *{
+.details * {
     margin: 15px;
 }
-.quickdetails{
+
+.quickdetails {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
 }
-.quickdetails div{
+
+.quickdetails div {
     background: #E8F2F5;
     border: 1px solid #A8BEC7;
     border-radius: 15px;
-    margin : 10px;
+    margin: 10px;
     padding: 10px;
     text-align: center;
+
 }
-.quickdetails div h2{
+
+.quickdetails div h2 {
     font-size: 34px;
 }
-.quickaccess{
+
+.quickaccess {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
-.quickaccess div{
+
+.quickaccess div {
     background: #E8F2F5;
     border: 1px solid #A8BEC7;
     border-radius: 15px;
-    margin : 10px;
+    margin: 10px;
     padding: 10px;
+
 }
 
-.quickaccess div:hover{
+.quickaccess div:hover {
     transform: scale(1.05);
+
 }
 
-.notices div{
+.notices div {
     background: #E8F2F5;
     border: 1px solid #A8BEC7;
     margin: 10px;
@@ -60,28 +79,36 @@
     border-radius: 15px;
 
 }
+
 .notices div {
     margin: 10px;
-    
+
 }
-.notices div p{
+
+.notices div p {
     letter-spacing: 1.6px;
     overflow: hidden;
-    white-space: nowrap ;
-    text-overflow: ellipsis; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
-.notices .viewmore{
-    width:100px;
+
+.notices .viewmore {
+    width: 100px;
     text-align: center;
     margin-left: 50%;
-    translate:-50%;
-   
+    translate: -50%;
+
 }
-.notices .viewmore a{
-     text-decoration: none;
-     color : var(--primary-text);
-     font-weight: 700;
+
+.notices .viewmore a {
+    text-decoration: none;
+    color: var(--primary-text);
+    font-weight: 700;
+
 }
-.noticeheading{
-    margin-left:10px;
+
+.noticeheading {
+    margin-left: 10px;
+
 }

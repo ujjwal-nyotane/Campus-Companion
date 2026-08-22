@@ -2,9 +2,12 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
 }
-.pagename{
-    margin : 10px;
-    padding: 10px;
+.head{
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color:var(--primary-text);
+
 }
 .attendancehero div{
     background: #E8F2F5;
@@ -12,6 +15,7 @@
     border-radius: 15px;
     margin : 10px;
     padding: 10px;
+    text-align: center;
 }
 .attendanceregister{
     display: grid;
@@ -64,9 +68,9 @@
 .days div{
      background-color: #E8F2F5;
      width:50px;
-    height: 50px;
+     height: 50px;
      text-align: center;
-    vertical-align: middle;
+     vertical-align: middle;
      margin: 10px;
      border-radius: 30px;
     

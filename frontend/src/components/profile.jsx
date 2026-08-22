@@ -2,8 +2,8 @@ import './profile.css'
 
 function Profile() {
     return <>
+        <p className='head'>STUDENT INFO</p>
         <div className='page-header'>
-            <p className='head'>STUDENT INFO</p>
             <h1>My Profile</h1>
             <p>View and manage your personal, academics and contact details.</p>
         </div>
