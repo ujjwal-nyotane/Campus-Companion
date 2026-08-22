@@ -13,8 +13,8 @@ function Navbar(){
             <li><Link to="/profile">My Info</Link></li>
             <li><Link to="">Grades</Link></li>
             <li><Link to="/attendance">Attendance</Link></li>
-            <li><Link to="/timetable">Timetable</Link></li>
-            <li><Link to="">Fee</Link></li>
+            <li><Link to="">Timetable</Link></li>
+            <li><Link to="/fees">Fee</Link></li>
             <li><Link to="">Hostel</Link></li>
             <li><Link to="">Support</Link></li>
         </ul>

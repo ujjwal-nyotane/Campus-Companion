@@ -1,0 +1,62 @@
+.fees {
+    padding: 20px;
+}
+
+.feeshero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:10px
+
+}
+
+.feeshero div {
+    background: #E8F2F5;
+    ;
+    
+    border: 1px #A8BEC7 solid;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.feesinfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    gap:10px
+}
+
+.feesbreakdown{
+    
+    display: flex;
+    flex-direction: column;
+    background: #E8F2F5;
+    border: 1px solid #A8BEC7;
+    border-radius: 15px;
+    margin: 10px;
+
+
+}
+.feesbreakdown div{
+    display: flex;
+    justify-content: space-between;
+    margin:10px;
+    padding: 5px 10px;
+    border-bottom: 1px #A8BEC7 solid ;
+}
+.feehistory{
+    border-left:1px #A8BEC7 solid ;
+}
+.feetable{
+    width: 100%;
+    background: #E8F2F5;
+    border: 1px #A8BEC7 solid;
+    border-radius: 15px;
+    margin: 10px;
+    
+}
+.feetable thead tr th,.feetable tbody tr td{
+    padding: 15px 10px;
+    text-align: center;
+}

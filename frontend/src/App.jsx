@@ -2,7 +2,7 @@ import Dashboard from "./components/dashboard.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Profile from "./components/profile.jsx";
-import Timetable from "./components/timetable.jsx";
+import Fees from './components/fees.jsx'
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
@@ -20,9 +20,9 @@ function App(){
             <Footer/>
             </>
         }/>
-        <Route path='/timetable' element={
-            <> <Navbar/>
-            <Timetable/>
+        <Route path='/fees' element={
+           <> <Navbar/>
+            <Fees/>
             <Footer/>
             </>
         }/>
