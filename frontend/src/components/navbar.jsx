@@ -10,7 +10,7 @@ function Navbar(){
 
         <ul className='nav-links'>
             <li><Link to="/">Dashboard</Link></li>
-            <li><Link to="">My Info</Link></li>
+            <li><Link to="/profile">My Info</Link></li>
             <li><Link to="">Grades</Link></li>
             <li><Link to="/attendance">Attendance</Link></li>
             <li><Link to="">Timetable</Link></li>
