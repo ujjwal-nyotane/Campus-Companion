@@ -17,6 +17,7 @@
 .welcomemsg p{
     font-size: 18px;
     margin: 10px;
+    
 }
 
 .loginbutton {
@@ -49,6 +50,7 @@
 .performance{
     display: grid;
     grid-template-columns: 1fr 1fr;
+
 }
 .performance div{
     display: flex;
@@ -68,6 +70,8 @@
     
     
 }
+
 .performance div img{
     width: 300px;
+
 }
