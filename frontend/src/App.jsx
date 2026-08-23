@@ -1,3 +1,4 @@
+import Index from './components/index.jsx'
 import Dashboard from "./components/dashboard.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
@@ -8,6 +9,12 @@ import { Route,Routes,Link } from "react-router-dom";
 function App(){
     return (
         <Routes>
+            <Route path='/index' element={
+           <> <Navbar/>
+            <Index/>
+            <Footer/>
+            </>
+        }/>
         <Route path='/' element={
            <> <Navbar/>
             <Dashboard/>
