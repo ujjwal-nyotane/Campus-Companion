@@ -62,16 +62,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #e8f2f5;
     padding: 20px;
     margin: 10px;
-    border: 1px #a8bec7 solid;
     border-radius: 15px;
     
     
 }
 
-.performance div img{
-    width: 300px;
+.performance >div{
+  border-left: 1px solid #a8bec7;
 
 }
+
+.performance div img{
+    width: 300px;
+  
+}
+
