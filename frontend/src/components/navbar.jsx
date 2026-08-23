@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom'
 function Navbar(){
     return (
         <div className='navbar'>
-            <a href="index.html" className='navbrand'>
+            <Link to="/index" className='navbrand'>
                 <div className='nav-logo'><img src='./src/assets/logo/logo.png'></img></div>
                 <div className='nav-title'><img src='./src/assets/logo/head.png'></img></div>
-            </a>
+            </Link>
 
         <ul className='nav-links'>
             <li><Link to="/">Dashboard</Link></li>

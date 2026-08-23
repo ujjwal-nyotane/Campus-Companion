@@ -1,0 +1,73 @@
+.indexhero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.welcomemsg {
+  padding: 100px;
+
+}
+
+.welcomemsg h1 {
+  color: var(--primary-text);
+  font-size:40px;
+
+}
+.welcomemsg p{
+    font-size: 18px;
+    margin: 10px;
+}
+
+.loginbutton {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  border-left: 1px solid #a8bec7;
+
+}
+
+.loginbutton a {
+  padding: 20px;
+  background: #e8f2f5;
+  border: 1px solid #a8bec7;
+  margin: 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: black;
+
+}
+
+.loginbutton a:hover {
+  background: rgb(0, 0, 0, 0.1);
+  transform: scale(1.03, 1.1);
+
+}
+
+.performance{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.performance div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.performance div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #e8f2f5;
+    padding: 20px;
+    margin: 10px;
+    border: 1px #a8bec7 solid;
+    border-radius: 15px;
+    
+    
+}
+.performance div img{
+    width: 300px;
+}
