@@ -141,7 +141,7 @@
 
 }
 
-.p-info .i-row{
+.p-info .i-row,.a-info .i-row,.c-info .i-row,.g-info .i-row{
     display: flex;
     justify-content: space-between;
     padding: 15px 0;

@@ -1,27 +1,35 @@
-import Index from './components/index.jsx'
+import Index from './components/index.jsx';
 import Dashboard from "./components/dashboard.jsx";
 import Attendance from './components/attendance.jsx';
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Profile from "./components/profile.jsx";
-import Fees from './components/fees.jsx'
-import TimeTable from './components/timetable.jsx'
-import Hostel from './components/hostel.jsx'
+import Fees from './components/fees.jsx';
+import TimeTable from './components/timetable.jsx';
+import Hostel from './components/hostel.jsx';
+import Grades from './components/grades.jsx';
+import Support from './components/support.jsx';
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
     return (
         <Routes>
-            <Route path='/index' element={
+            <Route path='/' element={
            <> <Navbar/>
             <Index/>
             <Footer/>
             </>
         }/>
 
-        <Route path='/' element={
+        <Route path='/home' element={
            <> <Navbar/>
             <Dashboard/>
+            <Footer/>
+            </>
+        }/>
+        <Route path='/grades' element={
+           <> <Navbar/>
+            <Grades/>
             <Footer/>
             </>
         }/>
@@ -59,6 +67,13 @@ function App(){
             <>
                 <Navbar/>
                 <Hostel/>
+                <Footer/>
+            </>
+        }/>
+        <Route path='/support' element={
+            <>
+                <Navbar/>
+                <Support/>
                 <Footer/>
             </>
         }/>

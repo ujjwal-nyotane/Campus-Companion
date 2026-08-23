@@ -1,0 +1,63 @@
+.support{
+    padding: 10px;
+}
+.supporthero{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.supporthero div{
+    background: #E8F2F5;
+    border: 1px #A8BEC7 solid;
+    margin: 15px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+
+}
+.supportlabel{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.supportlabel h3{
+    margin: 10px;
+}
+.ticketsandkey{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 15px;
+}
+.ticket {
+    background: #E8F2F5;
+    border: 1px #A8BEC7 solid;
+    padding: 10px   ;
+    border-radius: 15px;
+    
+    
+}
+.ticket div{
+    margin: 20px 10px;
+    padding: 10px;
+    border: 1px #A8BEC7 solid ;
+    border-radius: 15px;
+
+}
+.ticket div h4,.ticket div p{
+    margin: 0px;
+    padding: 4px 10px;
+}
+.keycontact{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap :30px;
+}
+.keycontact div{
+    background: #E8F2F5;
+    border: 1px #A8BEC7 solid;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+.keycontact div p{
+    margin: 0;
+}
