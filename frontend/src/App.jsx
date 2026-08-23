@@ -8,6 +8,7 @@ import Fees from './components/fees.jsx';
 import TimeTable from './components/timetable.jsx';
 import Hostel from './components/hostel.jsx';
 import Grades from './components/grades.jsx';
+import Support from './components/support.jsx';
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
@@ -66,6 +67,13 @@ function App(){
             <>
                 <Navbar/>
                 <Hostel/>
+                <Footer/>
+            </>
+        }/>
+        <Route path='/support' element={
+            <>
+                <Navbar/>
+                <Support/>
                 <Footer/>
             </>
         }/>

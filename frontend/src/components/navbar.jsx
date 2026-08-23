@@ -16,10 +16,10 @@ function Navbar(){
             <li><Link to="/timetable">Timetable</Link></li>
             <li><Link to="/fees">Fee</Link></li>
             <li><Link to="/hostel">Hostel</Link></li>
-            <li><Link to="">Support</Link></li>
+            <li><Link to="/support">Support</Link></li>
         </ul>
         <div className="nav-profile">
-            <a href=""><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
+            <a href="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
         </div>
 
 
