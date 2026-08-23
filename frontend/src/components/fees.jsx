@@ -2,7 +2,7 @@ import './fees.css';
 function Fees() {
     return (
         <div className='fees'>
-            <p className='pagetitle'>Fees</p>
+            <p className='head'>Fees</p>
             <div className='feeshero'>
                 <div>
                     <h2>256550</h2>

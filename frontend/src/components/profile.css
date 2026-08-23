@@ -1,4 +1,4 @@
-.page-header{
+    .page-header{
     margin: 10px 25px ;
     padding: 5px;
 
@@ -141,7 +141,7 @@
 
 }
 
-.i-row{
+.p-info .i-row{
     display: flex;
     justify-content: space-between;
     padding: 15px 0;

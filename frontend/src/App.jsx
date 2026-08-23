@@ -6,6 +6,7 @@ import Footer from "./components/footer.jsx";
 import Profile from "./components/profile.jsx";
 import Fees from './components/fees.jsx'
 import TimeTable from './components/timetable.jsx'
+import Hostel from './components/hostel.jsx'
 import { Route,Routes,Link } from "react-router-dom";
 
 function App(){
@@ -17,12 +18,14 @@ function App(){
             <Footer/>
             </>
         }/>
+
         <Route path='/' element={
            <> <Navbar/>
             <Dashboard/>
             <Footer/>
             </>
         }/>
+
         <Route path='/profile' element={
             <>
             <Navbar/>
@@ -30,24 +33,36 @@ function App(){
             <Footer/>
             </>
         }/>
+
          <Route path='/attendance' element={
            <> <Navbar/>
             <Attendance/>
             <Footer/>
             </>
         }/>
+
         <Route path='/fees' element={
            <> <Navbar/>
             <Fees/>
             <Footer/>
             </>
         }/>
+
         <Route path='/timetable' element={
            <> <Navbar/>
             <TimeTable/>
             <Footer/>
             </>
         }/>
+
+        <Route path='/hostel' element={
+            <>
+                <Navbar/>
+                <Hostel/>
+                <Footer/>
+            </>
+        }/>
+        
         </Routes>
     )
 }

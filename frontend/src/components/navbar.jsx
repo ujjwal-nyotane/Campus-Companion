@@ -15,7 +15,7 @@ function Navbar(){
             <li><Link to="/attendance">Attendance</Link></li>
             <li><Link to="/timetable">Timetable</Link></li>
             <li><Link to="/fees">Fee</Link></li>
-            <li><Link to="">Hostel</Link></li>
+            <li><Link to="/hostel">Hostel</Link></li>
             <li><Link to="">Support</Link></li>
         </ul>
         <div className="nav-profile">
