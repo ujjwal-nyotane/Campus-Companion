@@ -21,9 +21,13 @@ function Support() {
                     <h4>campuscompanion@tech.edu.in</h4>
                 </div>
             </div>
-            <div className='ticketsandkey'>
-                <div>
+            <div className='supportlabel'>
                 <h3>My Tickets</h3>
+                <h3>Key Contacts</h3>
+            </div>
+            <div className='ticketsandkey'>
+                
+                
                 
                 <div className='ticket'>
                     <div>
@@ -35,9 +39,9 @@ function Support() {
                         <p>In class MB 501 ac is not working</p>
                     </div>
                 </div>
-                </div>
-                <div>
-                <h3>Key Contacts</h3>
+                
+                
+                
                 <div className='keycontact'>
                     
                     
@@ -67,7 +71,7 @@ function Support() {
                         </div>
 
                     
-                </div>
+                
                 </div>
             </div>
         </div>
