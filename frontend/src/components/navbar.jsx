@@ -1,6 +1,7 @@
 import './navbar.css'
-import {Link} from 'react-router-dom'
-function Navbar(){
+
+import { Link } from 'react-router-dom'
+function Navbar() {
     return (
         <div className='navbar'>
             <Link to="/" className='navbrand'>
@@ -8,19 +9,26 @@ function Navbar(){
                 <div className='nav-title'><img src='./src/assets/logo/head.png'></img></div>
             </Link>
 
-        <ul className='nav-links'>
-            <li><Link to="/home">Dashboard</Link></li>
-            <li><Link to="/profile">My Info</Link></li>
-            <li><Link to="/grades">Grades</Link></li>
-            <li><Link to="/attendance">Attendance</Link></li>
-            <li><Link to="/timetable">Timetable</Link></li>
-            <li><Link to="/fees">Fee</Link></li>
-            <li><Link to="/hostel">Hostel</Link></li>
-            <li><Link to="/support">Support</Link></li>
-        </ul>
-        <div className="nav-profile">
-            <a href="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
-        </div>
+            {console.log(window.location.pathname)}
+            {(window.location.pathname != '/f-dashboard' && window.location.pathname != '/') ?
+
+
+                <ul className='nav-links'>
+                    <li><Link to="/home">Dashboard</Link></li>
+                    <li><Link to="/profile">My Info</Link></li>
+                    <li><Link to="/grades">Grades</Link></li>
+                    <li><Link to="/attendance">Attendance</Link></li>
+                    <li><Link to="/timetable">Timetable</Link></li>
+                    <li><Link to="/fees">Fee</Link></li>
+                    <li><Link to="/hostel">Hostel</Link></li>
+                    <li><Link to="/support">Support</Link></li>
+                </ul>
+                :
+                <></>
+            }
+            <div className="nav-profile">
+                <a href="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
+            </div>
 
 
         </div>

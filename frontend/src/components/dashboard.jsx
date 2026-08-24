@@ -2,7 +2,7 @@ import './dashboard.css';
 import {Link} from 'react-router-dom';
 const hero = (
     <>
-    <p className='head'>Dashboard</p>
+    <p className='head'>DASHBOARD</p>
     <div className="hero">
         
         <div className="greetings">
