@@ -9,7 +9,9 @@ import TimeTable from './components/timetable.jsx';
 import Hostel from './components/hostel.jsx';
 import Grades from './components/grades.jsx';
 import Support from './components/support.jsx';
+import F_dashboard from './components/faculty.jsx';
 import { Route,Routes,Link } from "react-router-dom";
+
 
 function App(){
     return (
@@ -70,10 +72,19 @@ function App(){
                 <Footer/>
             </>
         }/>
+
         <Route path='/support' element={
             <>
                 <Navbar/>
                 <Support/>
+                <Footer/>
+            </>
+        }/>
+
+        <Route path='/f-dashboard' element={
+            <>
+                <Navbar/>
+                <F_dashboard/>
                 <Footer/>
             </>
         }/>
