@@ -17,8 +17,8 @@ function Index() {
           </p>
         </div>
         <div className="loginbutton">
-          <Link to="/f-dashboard">Faculty</Link>
-          <Link to="/home">Student</Link>
+          <Link to="/f-dashboard" target="_top">Faculty</Link>
+          <Link to="/home" target="_top">Student</Link>
         </div>
       </div>
       <div className="performance">

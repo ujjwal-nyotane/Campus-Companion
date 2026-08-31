@@ -10,7 +10,7 @@ import Hostel from './components/hostel.jsx';
 import Grades from './components/grades.jsx';
 import Support from './components/support.jsx';
 import F_dashboard from './components/faculty.jsx';
-import { Route,Routes,Link } from "react-router-dom";
+import { Route,Routes } from "react-router-dom";
 
 
 function App(){

@@ -13,6 +13,7 @@ function Navbar() {
             {(window.location.pathname != '/f-dashboard' && window.location.pathname != '/') ?
 
 
+
                 <ul className='nav-links'>
                     <li><Link to="/home">Dashboard</Link></li>
                     <li><Link to="/profile">My Info</Link></li>
@@ -27,7 +28,7 @@ function Navbar() {
                 <></>
             }
             <div className="nav-profile">
-                <a href="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></a>
+                <Link to="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></Link>
             </div>
 
 
