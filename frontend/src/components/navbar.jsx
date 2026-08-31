@@ -15,14 +15,14 @@ function Navbar() {
 
 
                 <ul className='nav-links'>
-                    <li><Link to="/home">Dashboard</Link></li>
-                    <li><Link to="/profile">My Info</Link></li>
-                    <li><Link to="/grades">Grades</Link></li>
-                    <li><Link to="/attendance">Attendance</Link></li>
-                    <li><Link to="/timetable">Timetable</Link></li>
-                    <li><Link to="/fees">Fee</Link></li>
-                    <li><Link to="/hostel">Hostel</Link></li>
-                    <li><Link to="/support">Support</Link></li>
+                    <li><Link to="/home" target="_top">Dashboard</Link></li>
+                    <li><Link to="/profile" target="_top">My Info</Link></li>
+                    <li><Link to="/grades" target="_top">Grades</Link></li>
+                    <li><Link to="/attendance" target="_top">Attendance</Link></li>
+                    <li><Link to="/timetable" target="_top">Timetable</Link></li>
+                    <li><Link to="/fees" target="_top">Fee</Link></li>
+                    <li><Link to="/hostel" target="_top">Hostel</Link></li>
+                    <li><Link to="/support" target="_top">Support</Link></li>
                 </ul>
                 :
                 <></>
