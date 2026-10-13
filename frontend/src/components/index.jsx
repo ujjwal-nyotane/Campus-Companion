@@ -1,9 +1,32 @@
-import { Link } from "react-router-dom";
+
 import { useState, } from "react";
 import "./index.css";
 
+
 function Index() {
-  const [redirect, setredirect] = useState('f-dashboard');
+  const [userId,setUserId]= useState("")
+  const [invalid,setinvalid]=useState(false)
+  const [password,setPassword]= useState("")
+  const data = JSON.parse(localStorage.getItem("data"))
+  const handleLoginButton = (e)=>{
+    e.preventDefault();
+
+    
+    if(data[userId] && data[userId].password==password){
+      setinvalid(false)
+      localStorage.setItem("isLogedIn",JSON.stringify(true));
+      localStorage.setItem("id",JSON.stringify(userId));
+      setTimeout(()=>{
+        window.location.pathname="/"
+      },200) 
+      console.log("Login Done")
+      
+    }
+    else{
+      console.log("error");
+      setinvalid(true)
+    }
+  }
   return (
     <>
     <h2 className="head">LOGIN</h2>
@@ -23,18 +46,15 @@ function Index() {
           <h2>Login</h2>
           <form>
             
-            <select onChange={(value)=>{setredirect(value.target.value)
-              console.log(value.target.value)
-            }}>
-              <option value={'f-dashboard'}>Faculty</option>
-              <option value={'home'}>Student</option>
-            </select>
-            <input type="text" placeholder="Enter email or user id"></input>
-            <input type="password" placeholder="Enter your password"></input>
-            <Link to={redirect}> Login </Link>
+            
+            <input type="text" placeholder="Enter email or user id" onChange={(e)=>{setUserId(e.target.value)}}></input>
+            <input type="password" placeholder="Enter your password" onChange={(e)=>{setPassword(e.target.value)}}></input>
+            
+              {invalid && <h6 style={{"color":"red","marginTop":"0px"}}>Invalid UserId or Password</h6>}
+            
+            <button onClick={handleLoginButton}> Login </button>
           </form>
-          {/* <Link to="/f-dashboard" target="_top">Faculty</Link>
-          <Link to="/home" target="_top">Student</Link> */}
+          
         </div>
       </div>
       <div className="performance">
