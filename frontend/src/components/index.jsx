@@ -1,24 +1,37 @@
 
-import { useState, } from "react";
+import { useEffect, useState, } from "react";
 import "./index.css";
-
+import Navbar from "./navbar";
+import ProtectedRoute from "./ProtectedRoutes";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Index() {
+
   const [userId,setUserId]= useState("")
   const [invalid,setinvalid]=useState(false)
   const [password,setPassword]= useState("")
   const data = JSON.parse(localStorage.getItem("data"))
+
+  useEffect(()=>
+  {
+    if(localStorage.getItem("isLogedIn") && JSON.parse(localStorage.getItem("isLogedIn")))
+      navigate("/dashboard") ;
+    },[])
+
+  const navigate = useNavigate();
   const handleLoginButton = (e)=>{
     e.preventDefault();
-
+  
     
     if(data[userId] && data[userId].password==password){
       setinvalid(false)
       localStorage.setItem("isLogedIn",JSON.stringify(true));
       localStorage.setItem("id",JSON.stringify(userId));
-      setTimeout(()=>{
-        window.location.pathname="/"
-      },200) 
+      
+      localStorage.setItem("Role",JSON.stringify(data[userId].Role));
+      navigate("/dashboard")
+      window.location.reload();
+      
       console.log("Login Done")
       
     }
@@ -29,6 +42,7 @@ function Index() {
   }
   return (
     <>
+    <Navbar></Navbar>
     <h2 className="head">LOGIN</h2>
       <div className="indexhero">
         <div className="welcomemsg">

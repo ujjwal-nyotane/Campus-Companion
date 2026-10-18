@@ -1,7 +1,19 @@
 import './dashboard.css';
 import {Link} from 'react-router-dom';
-const hero = (
-    <>
+import Navbar from './navbar';
+import Footer from './footer'
+
+
+
+
+
+
+
+function Dashboard() {
+    return (
+        <>
+        <Navbar></Navbar>
+            <>
     <p className='head'>DASHBOARD</p>
     <div className="hero">
         
@@ -18,9 +30,7 @@ const hero = (
         </div>
     </div>
     </>
-)
-const quickdetails=(
-    <div className='quickdetails'>
+        <div className='quickdetails'>
         <div>
             <h2>89%</h2>
             <h3>Attendance</h3>
@@ -42,10 +52,7 @@ const quickdetails=(
             <h3>Upcoming Exam</h3>
         </div>
     </div>
-)
-
-const quickaccess = (
-    <div className='quickaccess'>
+        <div className='quickaccess'>
         <div>
             <h3>Attendance</h3>
             <p>Track your Attendance Subject Wise</p>
@@ -63,9 +70,7 @@ const quickaccess = (
             <p>View your Information</p>
         </div>
     </div>
-)
-const notices = (
-    <>
+        <>
         <h2 className='noticeheading'>Notices</h2>
         <div className='notices'>
             <div>
@@ -99,14 +104,7 @@ Khushank: +91 8708955450</p>
             </div>
         </div>
     </>
-)
-function Dashboard() {
-    return (
-        <>
-        {hero}
-        {quickdetails}
-        {quickaccess}
-        {notices}
+        <Footer></Footer>
         </>
 
     )

@@ -9,9 +9,6 @@ function Navbar() {
                 <div className='nav-title'><img src='./src/assets/logo/head.png'></img></div>
             </Link>
 
-            {console.log(window.location.pathname)}
-            {(window.location.pathname != '/f-dashboard' && window.location.pathname != '/') ?
-
 
 
                 <ul className='nav-links'>
@@ -24,9 +21,9 @@ function Navbar() {
                     <li><Link to="/hostel" target="_top">Hostel</Link></li>
                     <li><Link to="/support" target="_top">Support</Link></li>
                 </ul>
-                :
+                
                 <></>
-            }
+            
             <div className="nav-profile">
                 <Link to="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></Link>
             </div>

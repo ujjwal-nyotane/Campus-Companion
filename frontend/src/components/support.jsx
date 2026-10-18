@@ -1,6 +1,6 @@
 import './support.css';
 function Support() {
-    return (
+        return (
         <div className='support'>
             <h2 className='head'>SUPPORT</h2>
             <div className='supporthero'>
