@@ -1,15 +1,10 @@
-import {Navigate} from 'react-router-dom'
-import Index from './Index.jsx'
-import { useEffect } from 'react';
-import students from '../data/data.js';
-import Dashboard from './dashboard.jsx'
-const ProtectedRoute = () => {
-    useEffect(()=>{
-        localStorage.setItem("data",JSON.stringify(students))
-    },[])
-    const isLogedIn = localStorage.getItem("isLogedIn");
+import { Navigate } from "react-router-dom";
 
-    return<> {JSON.parse(isLogedIn)?<Dashboard></Dashboard>:<Index></Index>}
-    </>
+function ProtectedRoute({ children }) {
+  const isLogedIn =
+    localStorage.getItem("isLogedIn") === "true";
+
+  return isLogedIn ? children : <Navigate to="/" replace />;
 }
-export default ProtectedRoute
+
+export default ProtectedRoute;
