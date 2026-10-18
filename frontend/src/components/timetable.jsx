@@ -1,4 +1,4 @@
-import "./timetable.css"
+import "./css/timetable.css"
 
 
 function Timetable(){

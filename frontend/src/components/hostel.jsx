@@ -1,4 +1,4 @@
-import './hostel.css'
+import './css/hostel.css'
 
 function Hostel (){
 

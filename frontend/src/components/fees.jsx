@@ -1,4 +1,4 @@
-import './fees.css';
+import './css/fees.css';
 function Fees() {
     return (
         <div className='fees'>

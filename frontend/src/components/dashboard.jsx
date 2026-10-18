@@ -1,7 +1,6 @@
-import './dashboard.css';
+import './css/dashboard.css';
 import {Link} from 'react-router-dom';
-import Navbar from './navbar';
-import Footer from './footer'
+
 
 
 
@@ -10,10 +9,9 @@ import Footer from './footer'
 
 
 function Dashboard() {
-    return (
+    return (<> 
         <>
-        <Navbar></Navbar>
-            <>
+
     <p className='head'>DASHBOARD</p>
     <div className="hero">
         
@@ -103,10 +101,8 @@ Khushank: +91 8708955450</p>
                 <Link>View More</Link>
             </div>
         </div>
-    </>
-        <Footer></Footer>
         </>
-
+        </>
     )
 }
 export default Dashboard

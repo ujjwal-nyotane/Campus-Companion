@@ -1,18 +1,21 @@
-import './navbar.css'
-
+import './css/navbar.css'
+import profilelogo from '../assets/logo/default_logo.jpg'
+import logo from '../assets/logo/logo.png'
+import head from '../assets/logo/head.png'
 import { Link } from 'react-router-dom'
 function Navbar() {
     return (
         <div className='navbar'>
             <Link to="/" className='navbrand'>
-                <div className='nav-logo'><img src='./src/assets/logo/logo.png'></img></div>
-                <div className='nav-title'><img src='./src/assets/logo/head.png'></img></div>
+                <div className='nav-logo'><img src={logo}></img></div>
+                <div className='nav-title'><img src={head}></img></div>
             </Link>
 
 
 
                 <ul className='nav-links'>
-                    <li><Link to="/home" target="_top">Dashboard</Link></li>
+             
+                    <li><Link to="/dashboard" target="_top">Dashboard</Link></li>
                     <li><Link to="/profile" target="_top">My Info</Link></li>
                     <li><Link to="/grades" target="_top">Grades</Link></li>
                     <li><Link to="/attendance" target="_top">Attendance</Link></li>
@@ -25,7 +28,7 @@ function Navbar() {
                 <></>
             
             <div className="nav-profile">
-                <Link to="/profile"><img src='./src/assets/logo/default_logo.jpg' alt='logo'></img></Link>
+                <Link to="/profile"><img src={profilelogo} alt='logo'></img></Link>
             </div>
 
 

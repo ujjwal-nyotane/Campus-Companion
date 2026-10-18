@@ -1,4 +1,4 @@
-import './faculty.css'
+import './css/faculty.css'
 
 function F_dashboard() {
     return <div className='main'>

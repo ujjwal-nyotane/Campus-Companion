@@ -1,49 +1,59 @@
 
 import { useEffect, useState, } from "react";
-import "./index.css";
+import "./css/index.css";
 import Navbar from "./navbar";
 import ProtectedRoute from "./ProtectedRoutes";
 import { Navigate, useNavigate } from "react-router-dom";
+import fulllogo from '../assets/logo/full_logo.png';
 
 function Index() {
 
-  const [userId,setUserId]= useState("")
-  const [invalid,setinvalid]=useState(false)
-  const [password,setPassword]= useState("")
+  const [userId, setUserId] = useState("")
+  const [invalid, setinvalid] = useState(false)
+  const [password, setPassword] = useState("")
   const data = JSON.parse(localStorage.getItem("data"))
 
-  useEffect(()=>
-  {
-    if(localStorage.getItem("isLogedIn") && JSON.parse(localStorage.getItem("isLogedIn")))
-      navigate("/dashboard") ;
-    },[])
+  useEffect(() => {
+    if (localStorage.getItem("isLogedIn") && JSON.parse(localStorage.getItem("isLogedIn"))) {
+      if (localStorage.getItem("Role") == "Student")
+        navigate("/dashboard");
+      if (localStorage.getItem("Role") == "Faculty")
+        navigate("/f-dashboard");
+    }
+  }, [])
 
   const navigate = useNavigate();
-  const handleLoginButton = (e)=>{
+  const handleLoginButton = (e) => {
     e.preventDefault();
-  
-    
-    if(data[userId] && data[userId].password==password){
+
+
+    if (data[userId] && data[userId].password == password) {
       setinvalid(false)
-      localStorage.setItem("isLogedIn",JSON.stringify(true));
-      localStorage.setItem("id",JSON.stringify(userId));
+      localStorage.setItem("isLogedIn", JSON.stringify(true));
+      localStorage.setItem("id", JSON.stringify(userId));
+      const role = data[userId].Role;
+
+      localStorage.setItem("Role", role);
       
-      localStorage.setItem("Role",JSON.stringify(data[userId].Role));
-      navigate("/dashboard")
-      window.location.reload();
-      
+      if (role == "Student") {
+        console.log("switch")
+        navigate("/dashboard")
+      }
+      if (role == "Faculty"){
+        console.log("switch")
+        navigate("/f-dashboard")
+      }
       console.log("Login Done")
-      
+
     }
-    else{
+    else {
       console.log("error");
-      setinvalid(true)
+      setinvalid(true);
     }
   }
   return (
     <>
-    <Navbar></Navbar>
-    <h2 className="head">LOGIN</h2>
+      <h2 className="head">LOGIN</h2>
       <div className="indexhero">
         <div className="welcomemsg">
           <h1>Welcome to Campus Companion</h1>
@@ -59,36 +69,36 @@ function Index() {
         <div className="loginbutton">
           <h2>Login</h2>
           <form>
-            
-            
-            <input type="text" placeholder="Enter email or user id" onChange={(e)=>{setUserId(e.target.value)}}></input>
-            <input type="password" placeholder="Enter your password" onChange={(e)=>{setPassword(e.target.value)}}></input>
-            
-              {invalid && <h6 style={{"color":"red","marginTop":"0px"}}>Invalid UserId or Password</h6>}
-            
+
+
+            <input type="text" placeholder="Enter email or user id" onChange={(e) => { setUserId(e.target.value) }}></input>
+            <input type="password" placeholder="Enter your password" onChange={(e) => { setPassword(e.target.value) }}></input>
+
+            {invalid && <h6 style={{ "color": "red", "marginTop": "0px" }}>Invalid UserId or Password</h6>}
+
             <button onClick={handleLoginButton}> Login </button>
           </form>
-          
+
         </div>
       </div>
       <div className="performance">
-            <div>
-                <div>
-                    <h2>99%</h2>
-                    <h3>Uptime</h3>
-                </div>
-                <div>
-                    <h2>2ms</h2>
-                    <h3>Response Time</h3>
-                </div>
-                <div>
-                    <h2>100%</h2>
-                    <h3>Secure</h3>
-                </div>
-            </div>
-            <div>
-                <img src="./src/assets/logo/full_logo.png"></img>
-            </div>
+        <div>
+          <div>
+            <h2>99%</h2>
+            <h3>Uptime</h3>
+          </div>
+          <div>
+            <h2>2ms</h2>
+            <h3>Response Time</h3>
+          </div>
+          <div>
+            <h2>100%</h2>
+            <h3>Secure</h3>
+          </div>
+        </div>
+        <div>
+          <img src={fulllogo}></img>
+        </div>
       </div>
     </>
   );

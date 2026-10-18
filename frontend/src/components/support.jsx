@@ -1,4 +1,4 @@
-import './support.css';
+import './css/support.css';
 function Support() {
         return (
         <div className='support'>

@@ -1,16 +1,17 @@
-import './footer.css';
+import './css/footer.css';
 import { Link } from 'react-router-dom'
-
-
+import git from '../assets/linklogo/git.svg'
+import x from '../assets/linklogo/x.svg'
+import insta from '../assets/linklogo/insta.svg'
 function Footer() {
     return <div className='footer'>
         <div className='appDescription'>
             <h2>Campus Companion</h2>
             <h4>Connect with us on</h4>
             <ul className='links'>
-                <li><a href='github.com' target='_blank'><img src="./src/assets/linklogo/git.svg" className='linklogo' alt="git" /></a></li>
-                <li><a href='x.com'><img src="./src/assets/linklogo/x.svg" className='linklogo' alt="X.xom" /></a></li>
-                <li><a href='instagram.com'><img src="./src/assets/linklogo/insta.svg" className='linklogo' alt="insta" /></a></li>
+                <li><a href='github.com' target='_blank'><img src={git} className='linklogo' alt="git" /></a></li>
+                <li><a href='x.com'><img src={x} className='linklogo' alt="X.xom" /></a></li>
+                <li><a href='instagram.com'><img src={insta} className='linklogo' alt="insta" /></a></li>
             </ul>
         </div>
 
@@ -20,7 +21,7 @@ function Footer() {
         
         <div className='quickfooterlinks'>
             <div>
-            <Link to='/home' target='_top'>Dashborad</Link>
+            <Link to='/dashboard' target='_top'>Dashborad</Link>
             <Link to='/profile' target='_top'>My Info</Link>
             <Link to='/grades' target='_top'>Grades</Link>
             <Link to='/attendance' target='_top'>Attendance</Link>

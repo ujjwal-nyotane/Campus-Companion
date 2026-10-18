@@ -1,0 +1,19 @@
+.notfound-main{
+    width: 100%;
+}
+.notfound-main h1.title{
+    text-align: center;
+    font-size: 48px;
+}
+.notfound-main .content{
+    text-align: center;
+    font-size: 32px;
+}
+
+.notfound-main .image img{
+    display: block;
+    margin: auto;
+    width: 400px;
+    
+    
+}

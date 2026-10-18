@@ -1,4 +1,4 @@
-import './grades.css';
+import './css/grades.css';
 function Grades(){
     return (
         <div className='grades'>
