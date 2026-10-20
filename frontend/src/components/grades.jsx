@@ -1,187 +1,73 @@
-import './grades.css';
-function Grades(){
-    return (
-        <div className='grades'>
-            <h2 className='head'>Grades</h2>
-            <div className='gradeshero'>
-                <div>
-                    <h2>9.86</h2>
-                    <h3>CGPA</h3>
-                </div>
-                <div>
-                    <h2>9.56</h2>
-                    <h3>SGPA</h3>
-                    
-                </div>
-            </div>
-            <div className='select-semester'>
-                <div>Semester 1</div>
-                <div>Semester 2</div>
-                <div>Semester 3</div>
-                
-            </div>
-            <div className='gradeandmarks'>
-            <table className='markstable'>
-                <thead>
-                    <tr>
-                        <th>
-                            Subject
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            MO
-                        </th>
-                        <th>
-                            MM
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            DBMS
-                        </td>
-                        <td>
-                            PE-1
-                        </td>
-                        <td>
-                            21
-                        </td>
-                        <td>
-                            25
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            OPPS
-                        </td>
-                        <td>
-                            CE-1
-                        </td>
-                        <td>
-                            18
-                        </td>
-                        <td>
-                            20
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            OPPS
-                        </td>
-                        <td>
-                            CE-2
-                        </td>
-                        <td>
-                            22
-                        </td>
-                        <td>
-                            25
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Stats                        
-                        </td>
-                        <td>
-                            ST-1
-                        </td>
-                        <td>
-                            25
-                        </td>
-                        <td>
-                            30
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        
-        <table className='gradecard'>
-            <thead>
-                    <tr>
-                        <th>
-                            Code
-                        </th>
-                        <th>
-                            Subject
-                        </th>
-                        <th>
-                            Credit
-                        </th>
-                        <th>
-                            Grade
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            24CSE0102
-                        </td>
-                        <td>
-                            Fundamentals of C Programming
-                        </td>
-                        <td>
-                            4.00
-                        </td>
-                        <td>
-                            A+
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            24CSE0105
-                        </td>
-                        <td>
-                            Foundations of AI Algorith
-                        </td>
-                        <td>
-                            3.00
-                        </td>
-                        <td>
-                            A
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            24CSE0107
-                        </td>
-                        <td>
-                            Front End Engineering I
-                        </td>
-                        <td>
-                            3.00
-                        </td>
-                        <td>
-                            A+
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            24CSE0104
-                        </td>
-                        <td>
-                            Operating System and Linux Fundamentals
-                        </td>
-                        <td>
-                            3.00
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                    <tr >
-                        <td className='SGPA' colSpan={3}>
-                            SGPA
-                        </td>
-                        <td>9.45</td>
-                    </tr>
-                </tbody>
+import "./grades.css";
+import { useState } from "react";
+
+function Grades() {
+  const [search, setSearch] = useState("");
+
+  const id = localStorage.getItem("id");
+  const students = JSON.parse(
+    localStorage.getItem("data") || "{}"
+  );
+
+  const student = students[id];
+
+  if (!student) {
+    return <p>Please log in again.</p>;
+  }
+
+  const grades = student.grades || [];  
+
+  const filteredGrades = grades.filter((item) =>
+    item.subject.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="page-container">
+      <h1>My Grades</h1>
+
+      <p>Student: {student.Name}</p>
+      <p>Roll Number: {student.Roll_No}</p>
+
+      <input
+        type="text"
+        placeholder="Search subject..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <h2>Academic Results</h2>
+
+      {filteredGrades.length === 0 ? (
+        <p>No subjects found.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Internal</th>
+              <th>External</th>
+              <th>Total</th>
+              <th>Grade</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {filteredGrades.map((item, index) => (
+              <tr key={index}>
+                <td>{item.subject}</td>
+                <td>{item.internal}</td>
+                <td>{item.external}</td>
+                <td>{item.total}</td>
+                <td>{item.grade}</td>
+                <td>{item.result}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-        </div>
-        </div>
-    )
+      )}
+    </div>
+  );
 }
+
 export default Grades;

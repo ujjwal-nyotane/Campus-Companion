@@ -5,10 +5,26 @@ import "./index.css";
 import students from "../data/data.js";
 
 function Index() {
+  const savedData = JSON.parse(
+    localStorage.getItem("data") || "{}"
+  );
+
+const updatedData = { ...students };
+
+Object.keys(savedData).forEach((key) => {
+  updatedData[key] = {
+    ...(students[key] || {}),
+    ...savedData[key]
+  };
+});
+
+localStorage.setItem("data", JSON.stringify(updatedData));
+
+  localStorage.setItem("data", JSON.stringify(updatedData));
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState(false);
-
+  
   const navigate = useNavigate();
 
   const handleLoginButton = (e) => {
@@ -23,7 +39,6 @@ function Index() {
 
       console.log("Login Done");
 
-      // Navigate to student dashboard
       navigate("/home");
     } else {
       setInvalid(true);
