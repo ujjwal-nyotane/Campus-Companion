@@ -1,6 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import './css/profile.css'
 
 function Profile() {
+
+    const navigate = useNavigate();
+
+    const handleClick = ()=>{
+        localStorage.removeItem("isLogedIn");
+        localStorage.removeItem("Role");
+        localStorage.removeItem("id")
+        navigate("/");
+    }
+
     return <>
         <p className='head'>STUDENT INFO</p>
         <div className='page-header'>
@@ -171,6 +182,8 @@ function Profile() {
                     </div>
                 </div>
             </div>
+
+            <button className='logoutbutton' onClick={handleClick}>Logout</button>
 
         </div>
 

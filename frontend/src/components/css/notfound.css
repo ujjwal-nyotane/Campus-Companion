@@ -1,12 +1,14 @@
 .notfound-main{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
 }
 .notfound-main h1.title{
-    text-align: center;
     font-size: 48px;
 }
 .notfound-main .content{
-    text-align: center;
     font-size: 32px;
 }
 
@@ -16,4 +18,19 @@
     width: 400px;
     
     
+}
+.notfound-main .backbutton{
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: rgba(0,0,0,.05);
+    border: 2px solid rgba(0,0,0,.20);
+    border-radius:15px ;
+}
+.notfound-main .backbutton:hover{
+    background-color: rgba(255,10,0,.80);
+    color: rgba(255,255,255,1);
+
+}
+.notfound-main .backbutton:active{
+    scale: .95;
 }
