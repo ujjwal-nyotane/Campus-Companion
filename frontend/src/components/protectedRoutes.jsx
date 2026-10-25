@@ -1,20 +1,10 @@
-import { Navigate, Outlet} from 'react-router-dom'
-
-import { useEffect, useState } from 'react';
-
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const ProtectedRoute = () => {
-    const [isLogedIn,SetIsLogedIn] = useState(localStorage.getItem("isLogedIn"));
-    useEffect(()=>{
-        SetIsLogedIn(localStorage.getItem("isLogedIn"));
-    })
-    
-    
-    return <>
-     {JSON.parse(isLogedIn) ? <Outlet />
-     :  
-     
-            <Navigate to="/"/>}
-    </>
-}
-export default ProtectedRoute
+    const { isLoggedIn } = useAuth();
+
+    return isLoggedIn ? <Outlet /> : <Navigate to="/" replace />;
+};
+
+export default ProtectedRoute;

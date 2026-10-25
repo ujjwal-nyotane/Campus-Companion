@@ -1,16 +1,13 @@
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 
-import {Navigate,Outlet} from 'react-router-dom'
+const RoleAuth = ({ assignedRole }) => {
+    const { isLoggedIn, role } = useAuth();
 
-const RoleAuth = ({assignedRole}) => {
-
-
-
-    if(JSON.parse(localStorage.getItem("isLogedIn")) && localStorage.getItem("Role")==assignedRole){
-        return  < Outlet />
+    if (isLoggedIn && role === assignedRole) {
+        return <Outlet />;
     }
-    else{
-        
-        return <Navigate to='/'/>
-    }
-}
+    return <Navigate to="/" replace />;
+};
+
 export default RoleAuth;

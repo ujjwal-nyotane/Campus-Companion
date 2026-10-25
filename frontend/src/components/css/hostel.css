@@ -1,136 +1,506 @@
-.h-main{
-    margin: 25px;
-
+/* Hostel & Mess Modern Theme */
+.hostel-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.head{
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color:var(--primary-text);
-
+/* Hostel Hero Card */
+.hostel-hero-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
-.h-banner{
-    background-color: #E8F2F5;
-    border: 2px solid #A8BEC7;
-    border-radius: 15px;
+.hero-details-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.hostel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #e6f7f0;
+    color: #059669;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+    width: fit-content;
+    margin-bottom: 8px;
+}
+
+.hero-details-col h2 {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.hostel-subtitle {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.hostel-info-chips {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.info-chip {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 25px;
-    margin-bottom: 20px;
-
+    gap: 6px;
+    font-size: 12px;
+    color: #475569;
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    padding: 6px 12px;
+    border-radius: 8px;
 }
 
+.info-chip svg {
+    color: #10b981;
+}
 
-
-.h-details{
+.hostel-status-box {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
 }
 
-.h-details .c{
-    font-size: 14px;
-    padding: 7px;
-}
-
-.h-details .c span{
+.allotment-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #d1fae5;
+    color: #065f46;
+    font-size: 13px;
     font-weight: 700;
-
+    padding: 8px 16px;
+    border-radius: 10px;
 }
 
-.h-banner div p{
-    font-size: 14px;
-    padding-left: 7px;
+.validity-txt {
+    font-size: 11px;
+    color: #94a3b8;
 }
 
-.h-status{
-    font-size: 25px;
-    font-weight: 700;
-    padding: 40px;
-    margin-right: 60px;
-}
-
-.h-grid{
+/* Quick Metrics Grid */
+.hostel-metrics-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    margin-bottom: 30px;
-    gap:10px;
-    
-
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
 }
 
-.grid-card{
-    background-color: #E8F2F5;
-    border: 2px solid #A8BEC7;
-    border-radius: 15px;
-    text-align: center;
-    padding:45px;
-    
-}
-
-.i-grid{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 10px;
-    margin-bottom: 30px;
-
-}
-
-.i-card{
-    background-color: #E8F2F5;
-    border: 2px solid #A8BEC7;
-    border-radius: 15px;
-
-}
-
-.i-card div{
-    margin: 10px;
-
-}
-
-.i-card .i-row{
+.h-stat-box {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 16px;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px solid #A8BEC7;
-    font-size: 15px;
-
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
-.i-row .l-2{
+.h-stat-box h2 {
+    margin: 0 0 4px 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: #073a64;
+}
+
+.h-stat-box h3 {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    color: #64748b;
     font-weight: 600;
-
 }
 
-.h-facilities{
-    background-color: #E8F2F5;
-    border:2px solid #A8BEC7;
-    border-radius: 15px;
-    margin-bottom: 50px;
-
+.h-stat-box span {
+    font-size: 11px;
+    color: #94a3b8;
 }
 
-.h-facilities .f-grid{
+.text-green { color: #059669 !important; }
+.text-blue { color: #0284c7 !important; }
+
+/* Main Grid: Mess Menu + Complaint Form */
+.hostel-main-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    margin: 25px;
-    gap: 20px;
-    padding: 10px;
-    padding-bottom: 25px;
-    margin-bottom: 30px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
 }
 
-.f-card{
-    background-color: #A8BEC7;
-    text-align: center;
-    border: 1px solid #E8F2F5;
-    border-radius: 15px;
-    padding: 20px;
-    margin: 10px;
+.hostel-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
 
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.card-top-row h3 {
+    margin: 0 0 4px 0;
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.card-top-row p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Mess Menu Card */
+.mess-tabs-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.meal-tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.meal-tab-btn.active {
+    background-color: #ffffff;
+    color: #059669;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.meal-display-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.meal-time-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284c7;
+    margin-bottom: 14px;
+}
+
+.meal-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.meal-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.bullet-point {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+    flex-shrink: 0;
+}
+
+/* Complaint Form */
+.alert-hostel-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.hostel-complaint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.form-fields-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.field-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.field-group select,
+.field-group textarea {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+}
+
+.field-group select:focus,
+.field-group textarea:focus {
+    border-color: #10b981;
+    background-color: #ffffff;
+}
+
+.error-input {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
+.field-error-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #ef4444;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.btn-submit-complaint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #073a64;
+    color: #ffffff;
+    border: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit-complaint:hover {
+    background-color: #0f548f;
+}
+
+/* Recent Complaints Log */
+.recent-complaints-box {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+}
+
+.complaints-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.complaints-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.complaint-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.c-id {
+    font-size: 11px;
+    font-weight: 700;
+    color: #073a64;
+}
+
+.c-text {
+    margin: 2px 0 0 0;
+    font-size: 12px;
+    color: #334155;
+}
+
+.c-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.c-status.in-progress { background-color: #e0f2fe; color: #0369a1; }
+.c-status.resolved { background-color: #d1fae5; color: #065f46; }
+.c-status.pending { background-color: #fef3c7; color: #92400e; }
+
+/* Bottom Grid: Facilities + Notices */
+.hostel-bottom-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+}
+
+.facilities-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.facility-tile {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    transition: transform 0.15s ease;
+}
+
+.facility-tile:hover {
+    transform: translateY(-2px);
+    border-color: #10b981;
+}
+
+.tile-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #e6f7f0;
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px auto;
+}
+
+.facility-tile h4 {
+    margin: 0 0 3px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.facility-tile p {
+    margin: 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.active-tag {
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #e6f7f0;
+    color: #059669;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.hostel-notices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.h-notice-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.h-notice-box h4 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.h-notice-box p {
+    margin: 0 0 6px 0;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.4;
+}
+
+.notice-date {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+@media (max-width: 960px) {
+    .hostel-hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .hostel-status-box {
+        align-items: flex-start;
+    }
+    .hostel-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hostel-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .hostel-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+    .facilities-tiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
