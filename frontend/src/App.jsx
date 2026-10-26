@@ -21,12 +21,12 @@ import SidebarLayout from './layouts/SidebarLayout.jsx';
 function App() {
     return (
         <Routes>
-            {/* Public Route - Login Page */}
+            
             <Route path="/" element={<Index />} />
 
-            {/* Protected Routes Hierarchy */}
+            
             <Route element={<ProtectedRoute />}>
-                {/* Student Pages - Wrapped in SidebarLayout */}
+                
                 <Route element={<RoleAuth assignedRole="Student" />}>
                     <Route element={<SidebarLayout />}>
                         <Route path="/dashboard" element={<Dashboard />} />
@@ -41,7 +41,7 @@ function App() {
                     </Route>
                 </Route>
 
-                {/* Faculty Pages - Wrapped in SidebarLayout */}
+                
                 <Route element={<RoleAuth assignedRole="Faculty" />}>
                     <Route element={<SidebarLayout />}>
                         <Route path="/f-dashboard" element={<F_dashboard />} />
@@ -52,7 +52,7 @@ function App() {
                 </Route>
             </Route>
 
-            {/* 404 Catch-All Page */}
+            
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
