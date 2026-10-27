@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import './css/grades.css';
-import { useAuth } from '../context/AuthContext.jsx';
+import { useGrades } from '../context/GradesContext.jsx';
 import {
     Award,
     TrendingUp,
@@ -11,90 +10,18 @@ import {
     Calendar
 } from 'lucide-react';
 
-const semesterResultsData = {
-    'Semester 3': {
-        sgpa: '9.86',
-        credits: '20',
-        totalPoints: '196',
-        resultStatus: 'Passed with High Distinction',
-        subjects: [
-            { code: '25CSE0203', name: 'Front End Engineering', type: 'Core Theory & Lab', credits: 4.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '25CSE0205', name: 'Algorithms & Data Structures', type: 'Core Theory', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '25CSE0209', name: 'Database Management Systems', type: 'Core Theory & Lab', credits: 4.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '25CSE0207', name: 'Operating Systems & Linux', type: 'Core Theory', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '24UNI012', name: 'Entrepreneurship 101', type: 'Elective', credits: 2.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '25CSE0211', name: 'AI & Data Engineering Lab', type: 'Practical Lab', credits: 2.0, grade: 'O', points: 10, status: 'Pass' }
-        ],
-        assessments: [
-            { subject: 'Front End Engineering', type: 'Evaluation Component 1', obtained: 24, total: 25, percentage: '96%' },
-            { subject: 'Database Management Systems', type: 'Periodic Evaluation PE-1', obtained: 23, total: 25, percentage: '92%' },
-            { subject: 'Operating Systems & Linux', type: 'Lab Practical Viva', obtained: 19, total: 20, percentage: '95%' },
-            { subject: 'Algorithms & Data Structures', type: 'Sessional Test ST-1', obtained: 28, total: 30, percentage: '93.3%' },
-            { subject: 'Entrepreneurship 101', type: 'Pitch Deck & Case Study', obtained: 48, total: 50, percentage: '96%' }
-        ]
-    },
-    'Semester 2': {
-        sgpa: '9.62',
-        credits: '22',
-        totalPoints: '211',
-        resultStatus: 'Passed with Distinction',
-        subjects: [
-            { code: '24CSE0108', name: 'Object Oriented Programming with C++', type: 'Core Theory & Lab', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '24CSE0110', name: 'Computer Organization & Architecture', type: 'Core Theory', credits: 4.0, grade: 'A', points: 8, status: 'Pass' },
-            { code: '24CSE0112', name: 'Discrete Mathematical Structures', type: 'Core Theory', credits: 4.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '24CSE0114', name: 'Python for Data Science', type: 'Core Lab', credits: 4.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '24UNI005', name: 'Environmental Studies', type: 'University Mandatory', credits: 2.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '24CSE0116', name: 'Engineering Design Project', type: 'Project Lab', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' }
-        ],
-        assessments: [
-            { subject: 'Object Oriented Programming', type: 'Mid-Term Exam', obtained: 45, total: 50, percentage: '90%' },
-            { subject: 'Python for Data Science', type: 'Capstone Project Evaluation', obtained: 49, total: 50, percentage: '98%' },
-            { subject: 'Computer Architecture', type: 'Sessional Quiz 2', obtained: 18, total: 20, percentage: '90%' },
-            { subject: 'Discrete Mathematics', type: 'Final Assessment', obtained: 88, total: 100, percentage: '88%' }
-        ]
-    },
-    'Semester 1': {
-        sgpa: '9.45',
-        credits: '22',
-        totalPoints: '208',
-        resultStatus: 'Passed with Distinction',
-        subjects: [
-            { code: '24CSE0102', name: 'Fundamentals of C Programming', type: 'Core Theory & Lab', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '24CSE0105', name: 'Foundations of AI & Algorithms', type: 'Core Theory', credits: 3.0, grade: 'A', points: 8, status: 'Pass' },
-            { code: '24CSE0103', name: 'Digital Logic & Circuit Design', type: 'Core Theory', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' },
-            { code: '24MTH0101', name: 'Applied Calculus & Linear Algebra', type: 'Core Theory', credits: 4.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '24ENG0101', name: 'Professional Communication Skills', type: 'Humanities', credits: 3.0, grade: 'O', points: 10, status: 'Pass' },
-            { code: '24CSE0104', name: 'Computer Workshop & Shell Lab', type: 'Practical Lab', credits: 4.0, grade: 'A+', points: 9, status: 'Pass' }
-        ],
-        assessments: [
-            { subject: 'Fundamentals of C Programming', type: 'Lab Practical Viva', obtained: 46, total: 50, percentage: '92%' },
-            { subject: 'Applied Calculus', type: 'Sessional Test ST-1', obtained: 29, total: 30, percentage: '96.7%' },
-            { subject: 'Digital Logic Design', type: 'Periodic Test PE-1', obtained: 23, total: 25, percentage: '92%' }
-        ]
-    }
-};
-
-const getGradeBadgeClass = (grade) => {
-    switch (grade) {
-        case 'O': return 'grade-badge grade-o';
-        case 'A+': return 'grade-badge grade-aplus';
-        case 'A': return 'grade-badge grade-a';
-        case 'B+': return 'grade-badge grade-bplus';
-        default: return 'grade-badge';
-    }
-};
-
 function Grades() {
-    const { user } = useAuth();
-    const studentName = user?.Name || 'Ujjwal';
-    const rollNo = user?.id || '2510993689';
-
-    const [selectedSemester, setSelectedSemester] = useState('Semester 3');
-    const semData = semesterResultsData[selectedSemester];
-
-    const handlePrintTranscript = () => {
-        window.print();
-    };
+    const {
+        studentName,
+        rollNo,
+        semesterKeys,
+        selectedSemester,
+        setSelectedSemester,
+        currentSemData: semData,
+        aggregateStats,
+        getGradeBadgeClass,
+        printTranscript: handlePrintTranscript,
+    } = useGrades();
 
     return (
         <div className="grades-page-container">
@@ -119,7 +46,7 @@ function Grades() {
                         <Award size={24} />
                     </div>
                     <div className="g-stat-content">
-                        <h2>9.76</h2>
+                        <h2>{aggregateStats.cgpa}</h2>
                         <h3>Cumulative GPA (CGPA)</h3>
                         <span className="standing-pill">Dean's Honors &bull; Top 2%</span>
                     </div>
@@ -161,7 +88,7 @@ function Grades() {
 
             {/* Interactive Semester Selection Tabs */}
             <div className="semester-tabs-bar">
-                {Object.keys(semesterResultsData).map((sem) => (
+                {semesterKeys.map((sem) => (
                     <button
                         key={sem}
                         type="button"

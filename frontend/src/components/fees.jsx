@@ -20,11 +20,44 @@ function Fees() {
     });
 
     const [paySuccess, setPaySuccess] = useState('');
+    const [formErrors, setFormErrors] = useState({});
+
+    // Validates all fields and returns an errors object (empty = valid)
+    const validateForm = () => {
+        const errors = {};
+        const amtNum = Number(payData.amount);
+
+        if (!payData.feeType || payData.feeType.trim() === '') {
+            errors.feeType = 'Please select a fee type.';
+        }
+
+        if (!payData.amount || payData.amount.toString().trim() === '') {
+            errors.amount = 'Amount is required.';
+        } else if (isNaN(amtNum) || !Number.isFinite(amtNum)) {
+            errors.amount = 'Please enter a valid numeric amount.';
+        } else if (amtNum < 1000) {
+            errors.amount = 'Minimum payable amount is ₹1,000.';
+        } else if (amtNum > remainingFee) {
+            errors.amount = `Amount cannot exceed the remaining due of ₹${remainingFee.toLocaleString('en-IN')}.`;
+        }
+
+        if (!payData.paymentMethod || payData.paymentMethod.trim() === '') {
+            errors.paymentMethod = 'Please select a payment method.';
+        }
+
+        return errors;
+    };
 
     const handlePayment = (e) => {
         e.preventDefault();
+        const errors = validateForm();
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+            return;
+        }
+
+        setFormErrors({});
         const amtNum = Number(payData.amount);
-        if (amtNum <= 0) return;
 
         const newRec = {
             id: `REC-2026-${Math.floor(100 + Math.random() * 900)}`,
@@ -165,42 +198,68 @@ function Fees() {
                             <h4>Secure Campus Online Payment</h4>
                         </div>
 
-                        <form onSubmit={handlePayment} className="pay-modal-form">
-                            <div className="form-group">
-                                <label>Installment / Fee Type</label>
+                        <form onSubmit={handlePayment} className="pay-modal-form" noValidate>
+                            {/* Fee Type */}
+                            <div className={`form-group${formErrors.feeType ? ' has-error' : ''}`}>
+                                <label htmlFor="feeType">Installment / Fee Type</label>
                                 <select
+                                    id="feeType"
                                     value={payData.feeType}
-                                    onChange={(e) => setPayData({ ...payData, feeType: e.target.value })}
+                                    onChange={(e) => {
+                                        setPayData({ ...payData, feeType: e.target.value });
+                                        if (formErrors.feeType) setFormErrors(prev => ({ ...prev, feeType: '' }));
+                                    }}
                                 >
+                                    <option value="">-- Select Fee Type --</option>
                                     <option value="Academic Tuition Fee">Academic Tuition Fee</option>
                                     <option value="Hostel Accommodation Fee">Hostel Accommodation Fee</option>
                                     <option value="Mess & Dining Charges">Mess &amp; Dining Charges</option>
                                     <option value="Examination & CAS Fee">Examination &amp; CAS Fee</option>
                                 </select>
+                                {formErrors.feeType && (
+                                    <span className="field-error">{formErrors.feeType}</span>
+                                )}
                             </div>
 
-                            <div className="form-group">
-                                <label>Amount to Pay (INR) *</label>
+                            {/* Amount */}
+                            <div className={`form-group${formErrors.amount ? ' has-error' : ''}`}>
+                                <label htmlFor="payAmount">Amount to Pay (INR) *</label>
                                 <input
+                                    id="payAmount"
                                     type="number"
                                     min="1000"
                                     max={remainingFee}
+                                    placeholder={`Min ₹1,000 — Max ₹${remainingFee.toLocaleString('en-IN')}`}
                                     value={payData.amount}
-                                    onChange={(e) => setPayData({ ...payData, amount: e.target.value })}
-                                    required
+                                    onChange={(e) => {
+                                        setPayData({ ...payData, amount: e.target.value });
+                                        if (formErrors.amount) setFormErrors(prev => ({ ...prev, amount: '' }));
+                                    }}
                                 />
+                                {formErrors.amount && (
+                                    <span className="field-error">{formErrors.amount}</span>
+                                )}
                             </div>
 
-                            <div className="form-group">
-                                <label>Payment Method *</label>
+                            {/* Payment Method */}
+                            <div className={`form-group${formErrors.paymentMethod ? ' has-error' : ''}`}>
+                                <label htmlFor="paymentMethod">Payment Method *</label>
                                 <select
+                                    id="paymentMethod"
                                     value={payData.paymentMethod}
-                                    onChange={(e) => setPayData({ ...payData, paymentMethod: e.target.value })}
+                                    onChange={(e) => {
+                                        setPayData({ ...payData, paymentMethod: e.target.value });
+                                        if (formErrors.paymentMethod) setFormErrors(prev => ({ ...prev, paymentMethod: '' }));
+                                    }}
                                 >
+                                    <option value="">-- Select Payment Method --</option>
                                     <option value="UPI">UPI (Google Pay, PhonePe, Paytm)</option>
                                     <option value="Net Banking">Net Banking (HDFC, SBI, ICICI)</option>
                                     <option value="Debit / Credit Card">Debit / Credit Card</option>
                                 </select>
+                                {formErrors.paymentMethod && (
+                                    <span className="field-error">{formErrors.paymentMethod}</span>
+                                )}
                             </div>
 
                             <div className="modal-actions">
@@ -210,7 +269,7 @@ function Fees() {
                                 <button
                                     type="button"
                                     className="btn-cancel-pay"
-                                    onClick={() => setShowPayModal(false)}
+                                    onClick={() => { setShowPayModal(false); setFormErrors({}); }}
                                 >
                                     Cancel
                                 </button>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './css/dashboard.css';
 import { useAuth } from '../context/AuthContext.jsx';
-import { useCampus } from '../context/CampusContext.jsx';
-
+import { selectAllNotices ,selectSearchFilteredNotices} from '../store/noticesSlice.js';
 
 import {
     Clock,
@@ -13,9 +13,9 @@ import {
 } from 'lucide-react';
 
 function Dashboard() {
-    
+    const [searchNotices, setSearchNotices] = useState('');
     const { user } = useAuth();
-    const { announcements } = useCampus();
+    const notices = useSelector(selectSearchFilteredNotices, searchNotices);
     const studentName = user?.Name || 'Ujjwal';
 
     // Interactive Calendar state
@@ -178,20 +178,26 @@ function Dashboard() {
                         <div className="section-card notices-card">
                             <div className="card-top-header">
                                 <h4 className="card-title">Campus Notices</h4>
+                                <input onChange={(e) => setSearchNotices(e.target.value)} type="text" placeholder="Search notices..." className="notice-search-input" />
                             </div>
                             <div className="notices-list">
-                                {announcements.slice(0, 20).map((item) => (
-                                    <div key={item.id} className="notice-row">
-                                        <div className="notice-indicator">
-                                            <span className="notice-dot"></span>
+                                {notices.slice(0, 20).map((item) => {
+                                    
+                                    if(item.title.toLowerCase().includes(searchNotices.toLowerCase()) || item.body.toLowerCase().includes(searchNotices.toLowerCase())) {
+                                        return (
+                                            <div key={item.id} className="notice-row">
+                                                <div className="notice-indicator">
+                                                    <span className="notice-dot"></span>
+                                                </div>
+                                                <div className="notice-content">
+                                                    <h5>{item.title}</h5>
+                                                    <p>{item.body}</p>
+                                                    <span className="notice-date">{item.date} &bull; {item.postedBy}</span>
+                                                </div>
                                         </div>
-                                        <div className="notice-content">
-                                            <h5>{item.title}</h5>
-                                            <p>{item.body}</p>
-                                            <span className="notice-date">{item.date} &bull; {item.postedBy}</span>
-                                        </div>
-                                    </div>
-                                ))}
+                                    );
+                                }
+                                })}
                             </div>
                         </div>
 

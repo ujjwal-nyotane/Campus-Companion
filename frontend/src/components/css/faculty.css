@@ -104,10 +104,25 @@
     justify-content: center;
 }
 
-.icon-green { background-color: #ecfdf5; color: #10b981; }
-.icon-blue { background-color: #e0f2fe; color: #0284c7; }
-.icon-amber { background-color: #fef3c7; color: #d97706; }
-.icon-purple { background-color: #ede9fe; color: #6366f1; }
+.icon-green {
+    background-color: #ecfdf5;
+    color: #10b981;
+}
+
+.icon-blue {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+.icon-amber {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.icon-purple {
+    background-color: #ede9fe;
+    color: #6366f1;
+}
 
 .stat-txt h3 {
     margin: 0 0 2px 0;
@@ -125,7 +140,7 @@
 /* Faculty Main Grid */
 .faculty-main-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
@@ -282,9 +297,20 @@
     text-transform: capitalize;
 }
 
-.leave-status-pill.pending { background-color: #fef3c7; color: #92400e; }
-.leave-status-pill.approved { background-color: #d1fae5; color: #065f46; }
-.leave-status-pill.rejected { background-color: #fee2e2; color: #991b1b; }
+.leave-status-pill.pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.leave-status-pill.approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.leave-status-pill.rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
 
 .leave-reason-txt {
     font-size: 13px;
@@ -366,7 +392,10 @@
     color: #334155;
 }
 
-.fw-bold { font-weight: 700; color: #0f172a; }
+.fw-bold {
+    font-weight: 700;
+    color: #0f172a;
+}
 
 .att-score {
     font-weight: 700;
@@ -374,8 +403,15 @@
     border-radius: 6px;
 }
 
-.att-score.high { background-color: #e6f7f0; color: #059669; }
-.att-score.medium { background-color: #fef3c7; color: #d97706; }
+.att-score.high {
+    background-color: #e6f7f0;
+    color: #059669;
+}
+
+.att-score.medium {
+    background-color: #fef3c7;
+    color: #d97706;
+}
 
 .roster-status-chip {
     font-size: 11px;
@@ -384,32 +420,66 @@
     border-radius: 6px;
 }
 
-.roster-status-chip.present { background-color: #dcfce7; color: #15803d; }
-.roster-status-chip.absent { background-color: #fee2e2; color: #b91c1c; }
+.roster-status-chip.present {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.roster-status-chip.absent {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
 
 /* Faculty Attendance Page Styles */
 .faculty-ctrl-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #e2ece7;
-    border-radius: 18px;
-    padding: 22px 28px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #065f46 100%);
+    border-radius: 20px;
+    padding: 28px 34px;
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+.faculty-ctrl-header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+}
+
+.faculty-ctrl-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 60px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.08);
+    pointer-events: none;
 }
 
 .fac-page-title {
-    margin: 0 0 4px 0;
-    font-size: 22px;
+    margin: 0 0 6px 0;
+    font-size: 24px;
     font-weight: 800;
-    color: #0f172a;
+    color: #ffffff;
+    letter-spacing: -0.3px;
 }
 
 .fac-page-subtitle {
     margin: 0;
     font-size: 13px;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.5;
 }
 
 .ctrl-selectors {
@@ -502,9 +572,17 @@
     color: #0f172a;
 }
 
-.text-green { color: #10b981 !important; }
-.text-red { color: #ef4444 !important; }
-.text-blue { color: #0284c7 !important; }
+.text-green {
+    color: #10b981 !important;
+}
+
+.text-red {
+    color: #ef4444 !important;
+}
+
+.text-blue {
+    color: #0284c7 !important;
+}
 
 .roster-table-card {
     background-color: #ffffff;
@@ -591,8 +669,15 @@
     border-radius: 6px;
 }
 
-.status-badge-interactive.present { background-color: #dcfce7; color: #15803d; }
-.status-badge-interactive.absent { background-color: #fee2e2; color: #b91c1c; }
+.status-badge-interactive.present {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge-interactive.absent {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
 
 .btn-toggle-att {
     display: flex;
@@ -691,9 +776,20 @@
     text-transform: uppercase;
 }
 
-.leave-status-tag.pending { background-color: #fef3c7; color: #92400e; }
-.leave-status-tag.approved { background-color: #d1fae5; color: #065f46; }
-.leave-status-tag.rejected { background-color: #fee2e2; color: #991b1b; }
+.leave-status-tag.pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.leave-status-tag.approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.leave-status-tag.rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
 
 .leave-card-body {
     margin-bottom: 16px;
@@ -704,6 +800,18 @@
     font-weight: 700;
     color: #64748b;
     text-transform: uppercase;
+}.btn-batch-mark{
+    
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 5px;
 }
 
 .reason-text {
@@ -798,148 +906,238 @@
     gap: 14px;
 }
 
-.form-group {
+/* ── Form group & field styles (notices form) ───────────────────────── */
+.faculty-card .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
 }
 
-.form-group label {
+.faculty-card .form-group label {
     font-size: 12px;
     font-weight: 700;
-    color: #334155;
+    color: #475569;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    background-color: #f8fafc;
-    border: 1px solid #cbd5e1;
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-family: inherit;
+.faculty-card .form-group input,
+.faculty-card .form-group select,
+.faculty-card .form-group textarea {
+    padding: 9px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    resize: vertical;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #10b981;
-    background-color: #ffffff;
+.faculty-card .form-group input::placeholder,
+.faculty-card .form-group textarea::placeholder {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.faculty-card .form-group input:focus,
+.faculty-card .form-group select:focus,
+.faculty-card .form-group textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    background: #ffffff;
+}
+
+/* Validation error state */
+.faculty-card .form-group input.error-input,
+.faculty-card .form-group textarea.error-input {
+    border-color: #ef4444;
+    background: #fef2f2;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.10);
 }
 
 .field-error-txt {
     display: flex;
     align-items: center;
     gap: 4px;
+    font-size: 11.5px;
     color: #ef4444;
-    font-size: 11px;
     font-weight: 600;
+    animation: fadeInErrFac 0.18s ease;
 }
 
+@keyframes fadeInErrFac {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Form submit/reset button row */
 .form-btn-actions {
     display: flex;
-    gap: 12px;
-    margin-top: 6px;
+    gap: 10px;
+    margin-top: 4px;
 }
 
-/* Published Notices List */
+/* ── Filter tabs row ────────────────────────────────────────────────── */
+.notices-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.filter-tab {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.filter-tab:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.filter-tab.active {
+    background-color: #073a64;
+    color: #ffffff;
+    border-color: #073a64;
+    font-weight: 700;
+}
+
+/* ── Published notices list ─────────────────────────────────────────── */
 .published-notices-list {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    max-height: 480px;
+    max-height: 520px;
     overflow-y: auto;
+    padding-right: 2px;
+}
+
+.published-notices-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.published-notices-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
 }
 
 .published-notice-item {
     background-color: #f8fafc;
     border: 1px solid #e2ece7;
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 16px 18px;
+    transition: box-shadow 0.2s;
+}
+
+.published-notice-item:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .pub-notice-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
+/* Category badge */
 .pub-category-tag {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
     background-color: #e0f2fe;
     color: #0369a1;
-    padding: 2px 7px;
-    border-radius: 4px;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
+/* Delete notice button */
 .btn-delete-ann {
-    background: transparent;
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid #fca5a5;
     color: #ef4444;
+    border-radius: 7px;
+    padding: 4px 7px;
     cursor: pointer;
-    padding: 2px 4px;
-    border-radius: 4px;
+    transition: background-color 0.18s, color 0.18s;
 }
 
 .btn-delete-ann:hover {
-    background-color: #fee2e2;
+    background-color: #ef4444;
+    color: #ffffff;
+    border-color: #ef4444;
 }
 
+/* Notice title */
 .pub-title {
-    margin: 4px 0 6px 0;
-    font-size: 14px;
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    font-weight: 700;
     color: #0f172a;
-}
-
-.pub-body {
-    margin: 0 0 10px 0;
-    font-size: 12px;
-    color: #475569;
     line-height: 1.4;
 }
-.btn-batch-mark{
-    background-color: #f1f5f9;
-    border: 1px solid #cbd5e1;
+
+/* Notice body text */
+.pub-body {
+    margin: 0 0 12px 0;
+    font-size: 13px;
     color: #475569;
-    padding: 7px 14px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.btn-batch-mark:active {
-    background-color: #e2e8f0;
+    line-height: 1.6;
 }
 
+/* Footer row with date & author */
 .pub-footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 11px;
     color: #94a3b8;
-    border-top: 1px dashed #cbd5e1;
-    padding-top: 8px;
+    font-weight: 600;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 10px;
 }
 
+/* Empty state message */
+.empty-notices-msg {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 14px;
+    font-style: italic;
+    padding: 40px 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .faculty-hero-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+    .faculty-main-grid {
+        grid-template-columns: 1fr;
     }
     .faculty-metrics-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .faculty-main-grid {
-        grid-template-columns: 1fr;
-    }
     .att-stats-summary-bar {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .form-group-row {
+        grid-template-columns: 1fr;
+    }
+    .faculty-ctrl-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
     }
 }

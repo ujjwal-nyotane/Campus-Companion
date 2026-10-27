@@ -77,10 +77,10 @@ function FacultyAttendance() {
     return (
         <div className="faculty-page-container">
             {/* Header controls */}
-            <div className="faculty-ctrl-header">
-                <div>
-                    <h2 className="fac-page-title">Daily Attendance Marker</h2>
-                    <p className="fac-page-subtitle">Mark and publish student lecture presence in real time</p>
+            <div className="faculty-hero-card">
+                <div className='faculty-greeting'>
+                    <h2 >Daily Attendance Marker</h2>
+                    <p >Mark and publish student lecture presence in real time</p>
                 </div>
 
                 <div className="ctrl-selectors">

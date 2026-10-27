@@ -22,10 +22,10 @@ function FacultyLeaves() {
 
     return (
         <div className="faculty-page-container">
-            <div className="faculty-ctrl-header">
-                <div>
-                    <h2 className="fac-page-title">Student Leave Requests &amp; Approvals</h2>
-                    <p className="fac-page-subtitle">Review medical, academic, and event leave submissions</p>
+            <div className="faculty-hero-card">
+                <div className='faculty-greeting'>
+                    <h2>Student Leave Requests &amp; Approvals</h2>
+                    <p >Review medical, academic, and event leave submissions</p>
                 </div>
 
                 <div className="status-filter-pills">
