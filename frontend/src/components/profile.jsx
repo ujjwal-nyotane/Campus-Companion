@@ -180,9 +180,7 @@ function Profile() {
                     <button type="button" className="btn-edit-profile" onClick={openEditModal}>
                         <Edit3 size={15} /> Edit Contact Info
                     </button>
-                    <button type="button" className="btn-outline-card" onClick={handleDownloadId}>
-                        <CreditCard size={15} /> {downloadedBadge ? 'ID Downloaded!' : 'Digital Student ID'}
-                    </button>
+                    
                 </div>
             </div>
 
@@ -225,13 +223,7 @@ function Profile() {
                 >
                     <User size={16} /> Personal &amp; Academic Overview
                 </button>
-                <button
-                    type="button"
-                    className={`p-nav-tab ${activeTab === 'idcard' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('idcard')}
-                >
-                    <CreditCard size={16} /> Digital Campus Pass &amp; Docs
-                </button>
+                
                 <button
                     type="button"
                     className={`p-nav-tab ${activeTab === 'security' ? 'active' : ''}`}
@@ -382,107 +374,6 @@ function Profile() {
                 </div>
             )}
 
-            {/* TAB 2: DIGITAL ID & DOCS */}
-            {activeTab === 'idcard' && (
-                <div className="profile-id-section">
-                    <div className="id-card-showcase">
-                        <div className="virtual-id-card">
-                            <div className="id-card-top">
-                                <div className="id-uni-brand">
-                                    <h4>CAMPUS COMPANION UNIVERSITY</h4>
-                                    <span>INSTITUTION OF ADVANCED TECHNOLOGY</span>
-                                </div>
-                                <span className="id-pass-type">STUDENT PASS</span>
-                            </div>
-
-                            <div className="id-card-body">
-                                <div className="id-avatar-frame">
-                                    <span>{studentName.charAt(0).toUpperCase()}</span>
-                                </div>
-                                <div className="id-student-info">
-                                    <h3>{studentName}</h3>
-                                    <p className="id-field">B.Tech Computer Science &amp; AI</p>
-                                    <p className="id-roll">Roll No: <strong>{studentId}</strong></p>
-                                    <p className="id-validity">Valid Through: <strong>June 2029</strong></p>
-                                </div>
-                                <div className="id-qr-box">
-                                    <QrCode size={64} color="#065f46" />
-                                    <span>Scan for Gate Pass</span>
-                                </div>
-                            </div>
-
-                            <div className="id-card-bottom">
-                                <div className="id-barcode-mock">
-                                    ||| | |||| | |||||| || | |||| ||||| || |
-                                </div>
-                                <span className="id-official-seal">AUTHORIZED REGISTRAR</span>
-                            </div>
-                        </div>
-
-                        <div className="id-action-buttons">
-                            <button type="button" className="btn-primary-download" onClick={handleDownloadId}>
-                                <FileText size={16} /> Download Official PDF ID
-                            </button>
-                            <button type="button" className="btn-secondary-share" onClick={() => alert('Campus Pass QR copied to clipboard!')}>
-                                <Share2 size={16} /> Share Digital Pass
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Official Document Verification */}
-                    <div className="profile-detail-card verified-docs-card">
-                        <div className="card-heading-row">
-                            <div className="heading-icon-wrap"><Award size={18} /></div>
-                            <h3>Verified Academic Documents</h3>
-                        </div>
-                        <div className="docs-table-wrapper">
-                            <table className="docs-table">
-                                <thead>
-                                    <tr>
-                                        <th>Document Name</th>
-                                        <th>Verification Agency</th>
-                                        <th>Submission Date</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Class 10th Certificate</strong></td>
-                                        <td>CBSE Board Delhi</td>
-                                        <td>15 Aug 2025</td>
-                                        <td><span className="doc-pill verified">Verified</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Class 12th Marksheet</strong></td>
-                                        <td>CBSE Board Delhi</td>
-                                        <td>15 Aug 2025</td>
-                                        <td><span className="doc-pill verified">Verified</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>National Identity (Aadhar)</strong></td>
-                                        <td>UIDAI Govt. of India</td>
-                                        <td>18 Aug 2025</td>
-                                        <td><span className="doc-pill verified">Verified</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Medical Fitness Certificate</strong></td>
-                                        <td>Chief Medical Officer</td>
-                                        <td>20 Aug 2025</td>
-                                        <td><span className="doc-pill verified">Verified</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Hostel Accommodation Allotment</strong></td>
-                                        <td>Chief Warden Office</td>
-                                        <td>02 Sep 2025</td>
-                                        <td><span className="doc-pill verified">Verified</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {/* TAB 3: SECURITY & PASSWORD */}
             {activeTab === 'security' && (
                 <div className="profile-security-grid">
@@ -561,48 +452,6 @@ function Profile() {
                         </form>
                     </div>
 
-                    {/* Active Sessions & Security Info */}
-                    <div className="profile-detail-card">
-                        <div className="card-heading-row">
-                            <div className="heading-icon-wrap"><ShieldCheck size={18} /></div>
-                            <div>
-                                <h3>Active Campus Sessions</h3>
-                                <p className="card-subtitle">Devices currently authenticated to your account</p>
-                            </div>
-                        </div>
-
-                        <div className="sessions-list">
-                            <div className="session-item current">
-                                <div className="session-left">
-                                    <div className="session-dot" />
-                                    <div>
-                                        <h4>Chrome on Windows 11 (Current Device)</h4>
-                                        <p>Campus Wi-Fi Network &bull; IP: 172.16.24.89</p>
-                                    </div>
-                                </div>
-                                <span className="session-badge active">Active Now</span>
-                            </div>
-
-                            <div className="session-item">
-                                <div className="session-left">
-                                    <div className="session-dot offline" />
-                                    <div>
-                                        <h4>Campus Mobile App (Android)</h4>
-                                        <p>Hostel 4G Network &bull; Last seen: Yesterday at 8:40 PM</p>
-                                    </div>
-                                </div>
-                                <span className="session-badge">Verified</span>
-                            </div>
-                        </div>
-
-                        <div className="two-factor-box">
-                            <div>
-                                <h4>Two-Factor Authentication (2FA)</h4>
-                                <p>SMS verification OTP sent to your registered contact number during sensitive transactions.</p>
-                            </div>
-                            <span className="status-pill-green">Enabled</span>
-                        </div>
-                    </div>
                 </div>
             )}
 

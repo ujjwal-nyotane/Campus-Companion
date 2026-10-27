@@ -169,7 +169,7 @@ function Attendance() {
                                     <td>{
                                         calculateclasses("Front End Engineering", false)}
                                     </td>
-                                    <td><span className="badge-good">91% (Good)</span></td>
+                                    <td><span className={"badge-" + (Math.round(calculateclasses("Front End Engineering", true) / calculateclasses("Front End Engineering", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Front End Engineering", true) / calculateclasses("Front End Engineering", false) * 100 || 0)}% </span></td>
                                 </tr>
                                 <tr onClick={()=>setSelectedsubject("Operating Systems")}>
                                     <td className="fw-bold">Operating Systems</td>
@@ -180,21 +180,21 @@ function Attendance() {
                                     <td>{
                                         calculateclasses("Operating Systems", false)
                                     }</td>
-                                    <td><span className="badge-good">87.5% (Good)</span></td>
+                                    <td><span className={"badge-" + (Math.round(calculateclasses("Operating Systems", true) / calculateclasses("Operating Systems", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Operating Systems", true) / calculateclasses("Operating Systems", false) * 100 || 0)}% </span></td>
                                 </tr>
                                 <tr onClick={()=>setSelectedsubject("Database Management System")}>
                                     <td className="fw-bold">Database Management System</td>
                                     <td>25CSE0209</td>
                                     <td>{calculateclasses("Database Management System", true)}</td>
                                     <td>{calculateclasses("Database Management System", false)}</td>
-                                    <td><span className="badge-good">83.3% (Good)</span></td>
+                                    <td><span className={"badge-" + (Math.round(calculateclasses("Database Management System", true) / calculateclasses("Database Management System", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Database Management System", true) / calculateclasses("Database Management System", false) * 100 || 0)}% </span></td>
                                 </tr>
                                 <tr onClick={()=>setSelectedsubject("Algorithms & Data Structures")}>
                                     <td className="fw-bold">Algorithms &amp; Data Structures</td>
                                     <td>25CSE0205</td>
                                     <td>{calculateclasses("Algorithms & Data Structures", true)}</td>
                                     <td>{calculateclasses("Algorithms & Data Structures", false)}</td>
-                                    <td><span className="badge-good">85% (Good)</span></td>
+                                    <td><span className={"badge-" + (Math.round(calculateclasses("Algorithms & Data Structures", true) / calculateclasses("Algorithms & Data Structures", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Algorithms & Data Structures", true) / calculateclasses("Algorithms & Data Structures", false) * 100 || 0)}% </span></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -95,6 +95,14 @@
     padding: 3px 8px;
     border-radius: 6px;
 }
+.badge-bad {
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
 
 /* Calendar Styles */
 .weekname {
