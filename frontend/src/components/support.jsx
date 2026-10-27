@@ -14,45 +14,94 @@ import {
     ChevronDown,
     Send
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { departments, users } from '../data/data.js';
 
-const defaultTickets = [
-    {
-        id: 'TICK-101',
-        category: 'Attendance',
-        subject: 'Attendance marked wrong in OOP lecture',
-        priority: 'High',
-        description: 'On 10 August my attendance for Object Oriented Programming was marked absent while I was present in Room MB 501.',
-        status: 'In Progress',
-        date: '10 Aug 2026'
-    },
-    {
-        id: 'TICK-102',
-        category: 'Infrastructure',
-        subject: 'Air Conditioning unit not functioning in MB 501',
-        priority: 'Medium',
-        description: 'In classroom MB 501 the central AC unit is blowing warm air during afternoon lecture hours.',
-        status: 'Pending',
-        date: '15 Aug 2026'
-    }
-];
+// Helper: convert data.js ticket object to the shape the UI expects
+function normalizeTicket(ticketId, raw) {
+    return {
+        id: ticketId,
+        category: raw.Category || 'General',
+        priority: raw.Priority || 'Medium',
+        subject: raw.Title || '(No subject)',
+        description: raw.Description || '',
+        status: raw.Status || 'Pending',
+        date: raw.Submitted ? raw.Submitted.split(' ')[0] : 'N/A',
+    };
+}
 
-const faqsData = [
-    {
-        question: 'How do I rectify an attendance marked absent by mistake?',
-        answer: 'Raise a ticket under "Attendance" with the lecture date, subject code, and classroom number. You can also contact your course faculty directly via the Faculty Portal.'
-    },
-    {
-        question: 'Where can I pay pending semester fees and download receipts?',
-        answer: 'Navigate to the Finances / Fee Portal from the sidebar. You can pay your semester dues via UPI or Net Banking, and your official PDF receipt is generated instantly.'
-    },
-    {
-        question: 'How do I apply for a hostel night pass or leave?',
-        answer: 'Go to Attendance &bull; Apply for Leave, select your start and end dates, and submit. The Chief Warden and your department mentor will review and approve it directly.'
-    }
-];
+// Helper: get initials from a name string
+function getInitials(name = '') {
+    return name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+}
 
 function Support() {
-    const [tickets, setTickets] = useState(defaultTickets);
+    const { user } = useAuth();
+
+    // Resolve department data for the logged-in user
+    const userData = user ? users[user.user_ID] : null;
+    const deptName = userData?.department || '';
+    const deptData = departments[deptName] || {};
+
+    // Common FAQs shared across all departments (sourced from data.js)
+    const firstDept = Object.values(departments)[0];
+    const commonFaqKeys = [
+        'How to register for courses?',
+        'What are the library timings?',
+        'What is the procedure for applying for leave?',
+        'Is there a student counseling service available?',
+    ];
+    const commonFaqs = commonFaqKeys
+        .filter(q => firstDept?.FAQs?.[q])
+        .map(q => ({ question: q, answer: firstDept.FAQs[q] }));
+
+    // Department-specific FAQs from data.js (object → array)
+    const deptFaqs = Object.entries(deptData.FAQs || {})
+        .filter(([q]) => !commonFaqKeys.includes(q))
+        .map(([question, answer]) => ({ question, answer }));
+
+    // Merge: common FAQs first, then any dept-specific ones
+    const faqsData = [...commonFaqs, ...deptFaqs];
+
+
+    // Key contacts — hardcoded directly (not from data.js)
+    const keyContacts = [
+        {
+            role: 'Academics',
+            Name: 'Dr. Saravjeet Singh',
+            Position: 'Dean of Academics',
+            Email: 'dr.saravjeet@college.edu',
+            Contact: '9876553210',
+        },
+        {
+            role: 'Hostel',
+            Name: 'Mr. Bipin Jamwal',
+            Position: 'Chief Warden',
+            Email: 'bipin.jamwal@college.edu',
+            Contact: '9876542210',
+        },
+        {
+            role: 'Finance',
+            Name: 'Ms. Anjali Sharma',
+            Position: 'Finance Officer',
+            Email: 'anjali.sharma@college.edu',
+            Contact: '9876548210',
+        },
+        {
+            role: 'Anti Ragging Cell',
+            Name: 'Ms. Kavita Rao',
+            Position: 'Anti Ragging Officer',
+            Email: 'kavita.rao@college.edu',
+            Contact: '9876546210',
+        },
+    ];
+
+    // Initial tickets from data.js for the logged-in user
+    const initialTickets = userData
+        ? Object.entries(userData.myTickets || {}).map(([id, raw]) => normalizeTicket(id, raw))
+        : [];
+
+    const [tickets, setTickets] = useState(initialTickets);
     const [ticketFilter, setTicketFilter] = useState('All');
     const [openFaq, setOpenFaq] = useState(null);
 
@@ -97,35 +146,25 @@ function Support() {
         e.preventDefault();
         if (!validate()) return;
 
-        const newId = `TICK-${Math.floor(100 + Math.random() * 900)}`;
+        const newId = `TKT${Math.floor(10000000 + Math.random() * 90000000)}`;
         const newTicket = {
             id: newId,
             category: formData.category,
             priority: formData.priority,
             subject: formData.subject.trim(),
             description: formData.description.trim(),
-            status: 'Pending',
-            date: 'Today'
+            status: 'Open',
+            date: new Date().toISOString().split('T')[0],
         };
 
         setTickets([newTicket, ...tickets]);
         setSuccessMessage(`Support ticket #${newId} submitted successfully! Administration has been notified.`);
-        setFormData({
-            category: '',
-            priority: 'Medium',
-            subject: '',
-            description: ''
-        });
+        setFormData({ category: '', priority: 'Medium', subject: '', description: '' });
         setFormErrors({});
     };
 
     const handleReset = () => {
-        setFormData({
-            category: '',
-            priority: 'Medium',
-            subject: '',
-            description: ''
-        });
+        setFormData({ category: '', priority: 'Medium', subject: '', description: '' });
         setFormErrors({});
         setSuccessMessage('');
     };
@@ -137,10 +176,7 @@ function Support() {
     const handleToggleStatus = (id) => {
         setTickets(tickets.map(t => {
             if (t.id === id) {
-                return {
-                    ...t,
-                    status: t.status === 'Resolved' ? 'Pending' : 'Resolved'
-                };
+                return { ...t, status: t.status === 'Resolved' ? 'Open' : 'Resolved' };
             }
             return t;
         }));
@@ -190,33 +226,37 @@ function Support() {
                 </div>
             </div>
 
-            {/* Quick Self-Help FAQ Accordion */}
+            {/* Quick Self-Help FAQ Accordion — from data.js departments[dept].FAQs */}
             <div className="faq-quick-card">
                 <div className="faq-title-row">
                     <HelpCircle size={20} color="#10b981" />
                     <h4>Frequently Asked Student Questions</h4>
                 </div>
                 <div className="faq-accordion-list">
-                    {faqsData.map((faq, idx) => (
-                        <div key={idx} className="faq-item">
-                            <button
-                                type="button"
-                                className="faq-question-btn"
-                                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                            >
-                                <span>{faq.question}</span>
-                                <ChevronDown
-                                    size={16}
-                                    className={`faq-arrow ${openFaq === idx ? 'rotated' : ''}`}
-                                />
-                            </button>
-                            {openFaq === idx && (
-                                <div className="faq-answer-body">
-                                    <p>{faq.answer}</p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                    {faqsData.length === 0 ? (
+                        <p style={{ color: 'var(--text-muted)', padding: '12px 0' }}>No FAQs available.</p>
+                    ) : (
+                        faqsData.map((faq, idx) => (
+                            <div key={idx} className="faq-item">
+                                <button
+                                    type="button"
+                                    className="faq-question-btn"
+                                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                                >
+                                    <span>{faq.question}</span>
+                                    <ChevronDown
+                                        size={16}
+                                        className={`faq-arrow ${openFaq === idx ? 'rotated' : ''}`}
+                                    />
+                                </button>
+                                {openFaq === idx && (
+                                    <div className="faq-answer-body">
+                                        <p>{faq.answer}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
 
@@ -326,7 +366,7 @@ function Support() {
                     </form>
                 </div>
 
-                {/* My Tickets List */}
+                {/* My Tickets List — initial data from data.js users[userId].myTickets */}
                 <div className="support-card tickets-wrapper-card">
                     <div className="card-top-title">
                         <div>
@@ -408,41 +448,25 @@ function Support() {
                 </div>
             </div>
 
-            {/* Key Campus Contacts */}
+            {/* Key Campus Contacts — from data.js departments[dept].KeyContacts */}
             <div className="support-contacts-section">
                 <h3 className="section-title">Key Campus Authorities &amp; Helpdesk</h3>
                 <div className="contacts-cards-grid">
-                    <div className="authority-card">
-                        <div className="auth-avatar">DS</div>
-                        <h4>Dr. Saravjeet Singh</h4>
-                        <span className="auth-role">Dean of Department</span>
-                        <p className="auth-mail">dr.saravjeet@college.edu</p>
-                        <p className="auth-phone">+91 98765 5XXXX</p>
-                    </div>
-
-                    <div className="authority-card">
-                        <div className="auth-avatar">SK</div>
-                        <h4>Mr. Sanjay Kumar</h4>
-                        <span className="auth-role">Chief Campus Warden</span>
-                        <p className="auth-mail">sanjay@college.edu</p>
-                        <p className="auth-phone">+91 98765 5XXXX</p>
-                    </div>
-
-                    <div className="authority-card">
-                        <div className="auth-avatar">KV</div>
-                        <h4>Ms. Kavita</h4>
-                        <span className="auth-role">Anti-Ragging Chairperson</span>
-                        <p className="auth-mail">ms.kavita@college.edu</p>
-                        <p className="auth-phone">+91 98765 5XXXX</p>
-                    </div>
-
-                    <div className="authority-card">
-                        <div className="auth-avatar">RG</div>
-                        <h4>Mr. Raghav</h4>
-                        <span className="auth-role">Head of Student Accounts</span>
-                        <p className="auth-mail">raghav@college.edu</p>
-                        <p className="auth-phone">+91 98765 5XXXX</p>
-                    </div>
+                    {keyContacts.length === 0 ? (
+                        <p style={{ color: 'var(--text-muted)' }}>No contacts available.</p>
+                    ) : (
+                        keyContacts.map((contact, idx) => (
+                            <div key={idx} className="authority-card">
+                                <div className="auth-avatar">{getInitials(contact.Name)}</div>
+                                <h4>{contact.Name}</h4>
+                                <span className="auth-role">{contact.Position}</span>
+                                <p className="auth-mail">{contact.Email}</p>
+                                {contact.Contact && (
+                                    <p className="auth-phone">+{contact.Contact}</p>
+                                )}
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </div>
