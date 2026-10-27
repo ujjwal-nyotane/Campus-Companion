@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './css/attendance.css';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useCampus } from '../context/CampusContext.jsx';
@@ -21,6 +21,19 @@ function Attendance() {
     });
     const [date,setDate] = useState(new Date());
     const [selectedsubject,setSelectedsubject] = useState("Database Management System"); 
+    useEffect(() => {
+        const subjects=["Front End Engineering","Operating Systems","Database Management System","Algorithms and Data Structures"];
+        for (let i = 0; i < subjects.length; i++) {
+            const subject = subjects[i];
+            
+            
+            if(subject == selectedsubject){
+                document.querySelector(`.${subject.split(" ").join(".")}`).classList.add("active");
+            } else {
+                document.querySelector(`.${subject.split(" ").join(".")}`).classList.remove("active");
+            }
+        }
+    },[selectedsubject]);
     const generateCalendarDays = ()=>{
 
         const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -32,7 +45,7 @@ function Attendance() {
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = new Date(date.getFullYear(), date.getMonth(), day).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
             const status = attendanceDataState?.[user?.id]?.[selectedsubject]?.[dateStr] || '';
-            console.log(`Date: ${dateStr}, Status: ${status}`);
+            
             calendarDays.push(<div key={`day-${day}`} className={"day-cell " + status}> {day}</div>);
         }
         return calendarDays;
@@ -163,7 +176,7 @@ function Attendance() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr onClick={()=>setSelectedsubject("Front End Engineering")}>
+                                <tr onClick={()=>setSelectedsubject("Front End Engineering")} className="Front End Engineering">
                                     <td className="fw-bold">Front End Engineering</td>
                                     <td>25CSE0203</td>
                                     <td>{
@@ -173,7 +186,7 @@ function Attendance() {
                                     </td>
                                     <td><span className={"badge-" + (Math.round(calculateclasses("Front End Engineering", true) / calculateclasses("Front End Engineering", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Front End Engineering", true) / calculateclasses("Front End Engineering", false) * 100 || 0)}% </span></td>
                                 </tr>
-                                <tr onClick={()=>setSelectedsubject("Operating Systems")}>
+                                <tr onClick={()=>setSelectedsubject("Operating Systems")} className="Operating Systems">
                                     <td className="fw-bold">Operating Systems</td>
                                     <td>25CSE0207</td>
                                     <td>{
@@ -184,19 +197,19 @@ function Attendance() {
                                     }</td>
                                     <td><span className={"badge-" + (Math.round(calculateclasses("Operating Systems", true) / calculateclasses("Operating Systems", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Operating Systems", true) / calculateclasses("Operating Systems", false) * 100 || 0)}% </span></td>
                                 </tr>
-                                <tr onClick={()=>setSelectedsubject("Database Management System")}>
+                                <tr onClick={()=>setSelectedsubject("Database Management System")} className="Database Management System">
                                     <td className="fw-bold">Database Management System</td>
                                     <td>25CSE0209</td>
                                     <td>{calculateclasses("Database Management System", true)}</td>
                                     <td>{calculateclasses("Database Management System", false)}</td>
                                     <td><span className={"badge-" + (Math.round(calculateclasses("Database Management System", true) / calculateclasses("Database Management System", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Database Management System", true) / calculateclasses("Database Management System", false) * 100 || 0)}% </span></td>
                                 </tr>
-                                <tr onClick={()=>setSelectedsubject("Algorithms & Data Structures")}>
+                                <tr onClick={()=>setSelectedsubject("Algorithms and Data Structures")} className="Algorithms and Data Structures">
                                     <td className="fw-bold">Algorithms &amp; Data Structures</td>
                                     <td>25CSE0205</td>
-                                    <td>{calculateclasses("Algorithms & Data Structures", true)}</td>
-                                    <td>{calculateclasses("Algorithms & Data Structures", false)}</td>
-                                    <td><span className={"badge-" + (Math.round(calculateclasses("Algorithms & Data Structures", true) / calculateclasses("Algorithms & Data Structures", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Algorithms & Data Structures", true) / calculateclasses("Algorithms & Data Structures", false) * 100 || 0)}% </span></td>
+                                    <td>{calculateclasses("Algorithms and Data Structures", true)}</td>
+                                    <td>{calculateclasses("Algorithms and Data Structures", false)}</td>
+                                    <td><span className={"badge-" + (Math.round(calculateclasses("Algorithms and Data Structures", true) / calculateclasses("Algorithms and Data Structures", false) * 100 || 0) < 75 ? "bad" : "good")}>{Math.round(calculateclasses("Algorithms and Data Structures", true) / calculateclasses("Algorithms and Data Structures", false) * 100 || 0)}% </span></td>
                                 </tr>
                             </tbody>
                         </table>
