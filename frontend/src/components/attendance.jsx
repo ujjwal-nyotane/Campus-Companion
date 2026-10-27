@@ -17,7 +17,7 @@ function Attendance() {
         reason: '',
         startDate: '',
         endDate: '',
-        leaveType: 'Medical'
+        leaveType: ''
     });
     const [date,setDate] = useState(new Date());
     const [selectedsubject,setSelectedsubject] = useState("Database Management System"); 
@@ -32,6 +32,7 @@ function Attendance() {
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = new Date(date.getFullYear(), date.getMonth(), day).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
             const status = attendanceDataState?.[user?.id]?.[selectedsubject]?.[dateStr] || '';
+            console.log(`Date: ${dateStr}, Status: ${status}`);
             calendarDays.push(<div key={`day-${day}`} className={"day-cell " + status}> {day}</div>);
         }
         return calendarDays;
@@ -77,6 +78,7 @@ function Attendance() {
             rollNo,
             department: user?.dept || 'CSE-AIML',
             reason: `${formData.leaveType}: ${formData.reason.trim()}`,
+            type: formData.leaveType,
             startDate: formData.startDate,
             endDate: formData.endDate
         });
@@ -93,7 +95,7 @@ function Attendance() {
 
     const calculateclasses = (subject,present) => {
         const subjectData = attendanceDataState?.[user?.id]?.[subject] || {};
-        console.log("Subject Data:", subjectData,subject);
+        
         if(subject === undefined || subject === null) {
             const data = attendanceDataState?.[user?.id] || {};
             const count = Object.keys(data).reduce((total, sub) => {
@@ -254,10 +256,10 @@ function Attendance() {
                                     value={formData.leaveType}
                                     onChange={handleInputChange}
                                 >
-                                    <option value="Medical">Medical Leave</option>
-                                    <option value="Duty">Academic Event / Hackathon</option>
-                                    <option value="Medical">Family / Personal Emergency</option>
-                                    <option value="Duty">Official Duty Leave</option>
+                                    <option value="ML">Medical Leave</option>
+                                    <option value="DL">Academic Event / Hackathon</option>
+                                    <option value="ML">Family / Personal Emergency</option>
+                                    <option value="DL">Official Duty Leave</option>
                                 </select>
                             </div>
 

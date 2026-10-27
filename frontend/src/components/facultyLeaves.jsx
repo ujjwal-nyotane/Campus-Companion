@@ -120,7 +120,7 @@ function FacultyLeaves() {
                                             <button
                                                 type="button"
                                                 className="btn-approve-lg"
-                                                onClick={() => updateLeaveStatus(leave.id, 'Approved')}
+                                                onClick={() => updateLeaveStatus(leave.id, 'Approved', leave.type)}
                                             >
                                                 <CheckCircle size={15} /> Approve Leave
                                             </button>

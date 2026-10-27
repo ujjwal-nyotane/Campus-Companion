@@ -36,6 +36,7 @@ const initialLeaveRequests = [
         rollNo: '2510993797',
         department: 'CSE-AIML',
         reason: 'Attending National Hackathon Finals at IIT Delhi',
+        LeaveType: 'DL',
         startDate: '2026-08-15',
         endDate: '2026-08-17',
         status: 'Pending',
@@ -47,6 +48,7 @@ const initialLeaveRequests = [
         rollNo: '2510993689',
         department: 'CSE-AIML',
         reason: 'Medical Leave - Severe viral fever',
+        LeaveType: 'ML',
         startDate: '2026-08-20',
         endDate: '2026-08-22',
         status: 'Approved',
@@ -183,6 +185,26 @@ export const CampusProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('campus_leaves', JSON.stringify(leaveRequests));
+        leaveRequests.map((leave) => {
+            if (leave.status === 'Approved') {
+                for (let d = new Date(leave.startDate); d <= new Date(leave.endDate); d.setDate(d.getDate() + 1)) {
+                    const dateKey = normalizeDateKey(d);
+                    
+                    updateAttendanceStatus(leave.rollNo, 'Front End Engineering', dateKey, leave.LeaveType);
+                    updateAttendanceStatus(leave.rollNo, 'Operating Systems', dateKey, leave.LeaveType);
+                    updateAttendanceStatus(leave.rollNo, 'Database Management System', dateKey, leave.LeaveType);
+                    updateAttendanceStatus(leave.rollNo, 'Algorithms & Data Structures', dateKey, leave.LeaveType);
+                }
+            } else if (leave.status === 'Rejected' || leave.status === 'Pending') {
+                for (let d = new Date(leave.startDate); d <= new Date(leave.endDate); d.setDate(d.getDate() + 1)) {
+                    const dateKey = normalizeDateKey(d);
+                    updateAttendanceStatus(leave.rollNo, 'Front End Engineering', dateKey, "Absent");
+                    updateAttendanceStatus(leave.rollNo, 'Operating Systems', dateKey, "Absent");
+                    updateAttendanceStatus(leave.rollNo, 'Database Management System', dateKey, "Absent");
+                    updateAttendanceStatus(leave.rollNo, 'Algorithms & Data Structures', dateKey, "Absent");
+                }
+            }
+        });
     }, [leaveRequests]);
 
     useEffect(() => {
@@ -192,6 +214,7 @@ export const CampusProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('attendance_data', JSON.stringify(attendanceDataState));
     }, [attendanceDataState]);
+    
 
     const applyLeave = (leaveData) => {
         const newLeave = {
@@ -208,23 +231,12 @@ export const CampusProvider = ({ children }) => {
         setLeaveRequests(prev =>
             prev.map(item => item.id === id ? { ...item, status: newStatus } : item)
         );
+        
     };
-
-    const postAnnouncement = (announcementData) => {
-        const newAnn = {
-            id: `ANN-${Date.now()}`,
-            ...announcementData,
-            date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
-        };
-        setAnnouncements(prev => [newAnn, ...prev]);
-        return newAnn;
-    };
-
-    const deleteAnnouncement = (id) => {
-        setAnnouncements(prev => prev.filter(item => item.id !== id));
-    };
+    
 
     const updateAttendanceStatus = (studentID, subject, date, newStatus) => {
+        
         const dateKey = normalizeDateKey(date);
         const sid = String(studentID);
         setAttendanceData(prev => {
@@ -239,9 +251,12 @@ export const CampusProvider = ({ children }) => {
                         [dateKey]: newStatus
                     }
                 }
-            };
-        });
+            }
+        })
+        
     };
+
+
 
     const markBulkAttendance = (subject, date, studentStatusMap) => {
         const dateKey = normalizeDateKey(date);
@@ -270,8 +285,6 @@ export const CampusProvider = ({ children }) => {
                 applyLeave,
                 updateLeaveStatus,
                 announcements,
-                postAnnouncement,
-                deleteAnnouncement,
                 updateAttendanceStatus,
                 markBulkAttendance,
                 attendanceDataState,
