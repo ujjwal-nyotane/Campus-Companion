@@ -1,0 +1,945 @@
+/* Faculty Dashboard & Management Views */
+.faculty-dashboard-container,
+.faculty-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Faculty Hero Banner */
+.faculty-hero-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.faculty-greeting h1 {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.faculty-greeting p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.faculty-actions-quick {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-fac-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #10b981;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s;
+}
+
+.btn-fac-primary:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-fac-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-fac-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+/* Faculty Metrics Grid */
+.faculty-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.fac-stat-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.stat-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-green { background-color: #ecfdf5; color: #10b981; }
+.icon-blue { background-color: #e0f2fe; color: #0284c7; }
+.icon-amber { background-color: #fef3c7; color: #d97706; }
+.icon-purple { background-color: #ede9fe; color: #6366f1; }
+
+.stat-txt h3 {
+    margin: 0 0 2px 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.stat-txt span {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Faculty Main Grid */
+.faculty-main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.faculty-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header-row h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.live-tag {
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #e6f7f0;
+    color: #059669;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* Schedule Items List */
+.schedule-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.schedule-row.current-lecture {
+    background-color: #f0fdf4;
+    border-color: #86efac;
+}
+
+.time-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.sched-info {
+    flex: 1;
+}
+
+.sched-info h4 {
+    margin: 0 0 3px 0;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.sched-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.status-badge-active {
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #dcfce7;
+    color: #15803d;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.status-badge-upcoming {
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #f1f5f9;
+    color: #64748b;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+/* Leaves Preview List */
+.leaves-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.leave-item-card {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.leave-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.student-name {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.roll-dept {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.leave-status-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: capitalize;
+}
+
+.leave-status-pill.pending { background-color: #fef3c7; color: #92400e; }
+.leave-status-pill.approved { background-color: #d1fae5; color: #065f46; }
+.leave-status-pill.rejected { background-color: #fee2e2; color: #991b1b; }
+
+.leave-reason-txt {
+    font-size: 13px;
+    color: #334155;
+    margin: 4px 0 10px 0;
+    font-style: italic;
+}
+
+.leave-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 8px;
+}
+
+.leave-dates {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.leave-action-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-approve {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-reject {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Faculty Table Styles */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.faculty-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+}
+
+.faculty-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+    padding: 12px 14px;
+    border-bottom: 2px solid #e2ece7;
+}
+
+.faculty-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+}
+
+.fw-bold { font-weight: 700; color: #0f172a; }
+
+.att-score {
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.att-score.high { background-color: #e6f7f0; color: #059669; }
+.att-score.medium { background-color: #fef3c7; color: #d97706; }
+
+.roster-status-chip {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.roster-status-chip.present { background-color: #dcfce7; color: #15803d; }
+.roster-status-chip.absent { background-color: #fee2e2; color: #b91c1c; }
+
+/* Faculty Attendance Page Styles */
+.faculty-ctrl-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 22px 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.fac-page-title {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.fac-page-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.ctrl-selectors {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+}
+
+.ctrl-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ctrl-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.ctrl-group select,
+.ctrl-group input {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+}
+
+.btn-save-attendance {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-save-attendance:hover {
+    background-color: #059669;
+}
+
+.alert-toast-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.att-stats-summary-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.att-stat-item {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.att-stat-item .lbl {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.att-stat-item .val {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.text-green { color: #10b981 !important; }
+.text-red { color: #ef4444 !important; }
+.text-blue { color: #0284c7 !important; }
+
+.roster-table-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.table-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.table-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 9px 14px;
+    border-radius: 10px;
+    width: 320px;
+}
+
+.table-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+}
+
+.status-filter-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    background-color: #073a64;
+    color: #ffffff;
+    border-color: #073a64;
+}
+
+.term-att-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 130px;
+}
+
+.att-bar {
+    flex: 1;
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.att-fill {
+    height: 100%;
+    background-color: #10b981;
+    border-radius: 6px;
+}
+
+.status-badge-interactive {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+.status-badge-interactive.present { background-color: #dcfce7; color: #15803d; }
+.status-badge-interactive.absent { background-color: #fee2e2; color: #b91c1c; }
+
+.btn-toggle-att {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-toggle-att.make-absent {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-toggle-att.make-absent:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.btn-toggle-att.make-present {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.btn-toggle-att.make-present:hover {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+/* Faculty Leaves Grid */
+.leaves-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+}
+
+.faculty-leave-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.leave-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.student-profile-snippet {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-profile-snippet h4 {
+    margin: 0 0 2px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.student-profile-snippet span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.leave-status-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.leave-status-tag.pending { background-color: #fef3c7; color: #92400e; }
+.leave-status-tag.approved { background-color: #d1fae5; color: #065f46; }
+.leave-status-tag.rejected { background-color: #fee2e2; color: #991b1b; }
+
+.leave-card-body {
+    margin-bottom: 16px;
+}
+
+.lbl-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.reason-text {
+    font-size: 14px;
+    color: #1e293b;
+    line-height: 1.5;
+    margin: 6px 0 14px 0;
+}
+
+.leave-meta-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.meta-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.leave-card-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.req-id {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.leave-footer-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-approve-lg {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-reject-lg {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-revert {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Faculty Notices Form */
+.fac-notice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #10b981;
+    background-color: #ffffff;
+}
+
+.field-error-txt {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #ef4444;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.form-btn-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+/* Published Notices List */
+.published-notices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.published-notice-item {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.pub-notice-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.pub-category-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.btn-delete-ann {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.btn-delete-ann:hover {
+    background-color: #fee2e2;
+}
+
+.pub-title {
+    margin: 4px 0 6px 0;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.pub-body {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.4;
+}
+.btn-batch-mark{
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-batch-mark:active {
+    background-color: #e2e8f0;
+}
+
+.pub-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #94a3b8;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 8px;
+}
+
+@media (max-width: 900px) {
+    .faculty-hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .faculty-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .faculty-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .att-stats-summary-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

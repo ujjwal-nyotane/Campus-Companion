@@ -1,116 +1,27 @@
-
-import { Routes, Route, Navigate } from "react-router-dom";
-
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-
-import Index from "./components/Index";
-import Dashboard from "./components/dashboard";
-import Profile from "./components/Profile";
-import Grades from "./components/Grades";
-import Fees from "./components/Fees";
-import Attendance from "./components/attendance";
-import Hostel from "./components/Hostel";
-import Support from "./components/Support";
-import Timetable from "./components/timetable";
-import F_dashboard from "./components/faculty";
-
-import ProtectedRoute from "./components/protectedRoutes";
+import { Route, Routes } from 'react-router-dom';
+import Index from './components/index.jsx';
+import Dashboard from './components/dashboard.jsx';
+import Courses from './components/courses.jsx';
+import Attendance from './components/attendance.jsx';
+import Profile from './components/profile.jsx';
+import ProtectedRoute from './components/protectedRoutes.jsx';
+import Fees from './components/fees.jsx';
+import Grades from './components/grades.jsx';
+import Hostel from './components/hostel.jsx';
+import Support from './components/support.jsx';
+import Timetable from './components/timetable.jsx';
+import F_dashboard from './components/faculty.jsx';
+import FacultyAttendance from './components/facultyAttendance.jsx';
+import FacultyLeaves from './components/facultyLeaves.jsx';
+import FacultyNotices from './components/facultyNotices.jsx';
+import RoleAuth from './components/roleauth.jsx';
+import NotFound from './components/notfound.jsx';
+import SidebarLayout from './layouts/SidebarLayout.jsx';
 
 function App() {
-  return (
-    <>
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Index />} />
-
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/grades"
-          element={
-            <ProtectedRoute>
-              <Grades />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/attendance"
-          element={
-            <ProtectedRoute>
-              <Attendance />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/fees"
-          element={
-            <ProtectedRoute>
-              <Fees />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/hostel"
-          element={
-            <ProtectedRoute>
-              <Hostel />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/support"
-          element={
-            <ProtectedRoute>
-              <Support />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/timetable"
-          element={
-            <ProtectedRoute>
-              <Timetable />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/f-dashboard"
-          element={
-            <ProtectedRoute>
-              <F_dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-
-      <Footer />
-    </>
-  );
+    
+    return (
+        <ProtectedRoute></ProtectedRoute>
+    )
 }
-
-export default App;
+export default App

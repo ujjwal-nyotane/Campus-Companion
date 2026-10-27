@@ -1,105 +1,226 @@
-import './fees.css';
+import { useState } from 'react';
+import './css/fees.css';
+import { CreditCard, CheckCircle2, Download, ShieldCheck } from 'lucide-react';
+
+const initialReceipts = [
+    { id: 'REC-2026-081', date: '15 Jul 2026', amount: '₹75,000', mode: 'Net Banking', status: 'Success' },
+    { id: 'REC-2026-042', date: '10 Jan 2026', amount: '₹46,000', mode: 'UPI Transfer', status: 'Success' }
+];
+
 function Fees() {
+    const [receipts, setReceipts] = useState(initialReceipts);
+    const [remainingFee, setRemainingFee] = useState(135550);
+    const [showPayModal, setShowPayModal] = useState(false);
+
+    // Controlled Form State
+    const [payData, setPayData] = useState({
+        amount: '25000',
+        feeType: 'Academic Tuition Fee',
+        paymentMethod: 'UPI'
+    });
+
+    const [paySuccess, setPaySuccess] = useState('');
+
+    const handlePayment = (e) => {
+        e.preventDefault();
+        const amtNum = Number(payData.amount);
+        if (amtNum <= 0) return;
+
+        const newRec = {
+            id: `REC-2026-${Math.floor(100 + Math.random() * 900)}`,
+            date: 'Today',
+            amount: `₹${amtNum.toLocaleString('en-IN')}`,
+            mode: payData.paymentMethod,
+            status: 'Success'
+        };
+
+        setReceipts([newRec, ...receipts]);
+        setRemainingFee(prev => Math.max(0, prev - amtNum));
+        setPaySuccess(`Payment of ₹${amtNum.toLocaleString('en-IN')} completed! Receipt #${newRec.id} generated.`);
+        setShowPayModal(false);
+    };
+
     return (
-        <div className='fees'>
-            <p className='head'>Fees</p>
-            <div className='feeshero'>
-                <div>
-                    <h2>256550</h2>
-                    <h3>Total Fees</h3>
+        <div className="fees-page-container">
+            {/* Fees Hero Summary */}
+            <div className="feeshero">
+                <div className="fee-stat-box">
+                    <h2>₹2,56,550</h2>
+                    <h3>Total Annual Fees</h3>
                 </div>
-                <div>
-                    <h2>135550</h2>
-                    <h3>Remaining Fees</h3>
+                <div className="fee-stat-box highlight-box">
+                    <h2>₹{remainingFee.toLocaleString('en-IN')}</h2>
+                    <h3>Remaining Pending Due</h3>
                 </div>
-                <div>
-                    <h2>31 December 2026</h2>
-                    <h3>Deadline</h3>
+                <div className="fee-stat-box">
+                    <h2>31 Dec 2026</h2>
+                    <h3>Upcoming Deadline</h3>
                 </div>
-                <div>
-                    <h2>2</h2>
-                    <h3>Recipts Avaliable</h3>
+                <div className="fee-stat-box">
+                    <h2>{receipts.length}</h2>
+                    <h3>Receipts Generated</h3>
                 </div>
             </div>
-            
-            <div className='feesinfo'>
 
-                <div >
-                    <h3>Fees Breakdown</h3>
-                    <div className='feesbreakdown'>
-                    <div>
-                        <span>Academic Fees</span>
-                        <span>₹155000</span>
+            {paySuccess && (
+                <div className="alert-fee-success">
+                    <CheckCircle2 size={18} />
+                    <span>{paySuccess}</span>
+                </div>
+            )}
+
+            <div className="fees-main-grid">
+                {/* Fees Breakdown Card */}
+                <div className="fees-card breakdown-card">
+                    <div className="card-top-title">
+                        <h3>Semester Fee Breakdown</h3>
+                        <button
+                            type="button"
+                            className="btn-pay-now"
+                            onClick={() => setShowPayModal(true)}
+                        >
+                            <CreditCard size={15} /> Pay Installment Online
+                        </button>
                     </div>
-                    <div>
-                        <span>CAS Fees</span>
-                        <span>₹20000</span>
-                    </div>
-                    <div>
-                        <span>Hostel Fees</span>
-                        <span>₹60000</span>
-                    </div>
-                    <div>
-                        <span>Mess Fees</span>
-                        <span>₹20000</span>
-                    </div>
-                    <div>
-                        <span>Subscription Fees</span>
-                        <span>₹1550</span>
-                    </div>
-                    <div>
-                        <h3>Total</h3>
-                        <h3>₹256550</h3>
+
+                    <div className="feesbreakdown-list">
+                        <div className="fee-row">
+                            <span>Academic &amp; Tuition Fee</span>
+                            <span className="amt">₹1,55,000</span>
+                        </div>
+                        <div className="fee-row">
+                            <span>CAS &amp; Campus Amenities</span>
+                            <span className="amt">₹20,000</span>
+                        </div>
+                        <div className="fee-row">
+                            <span>Hostel Accommodation (Annual)</span>
+                            <span className="amt">₹60,000</span>
+                        </div>
+                        <div className="fee-row">
+                            <span>Mess &amp; Dining Charges</span>
+                            <span className="amt">₹20,000</span>
+                        </div>
+                        <div className="fee-row">
+                            <span>E-Library &amp; IT Subscription</span>
+                            <span className="amt">₹1,550</span>
+                        </div>
+                        <div className="fee-row total-row">
+                            <span>Total Payable</span>
+                            <span className="total-amt">₹2,56,550</span>
+                        </div>
                     </div>
                 </div>
-                </div>
-                <div className='feeshistory'>
-                    <h3>Fees History</h3>
-                    <div>
-                        <table className='feetable'>
+
+                {/* Receipts & Payment History Table */}
+                <div className="fees-card history-card">
+                    <h3>Payment History &amp; Receipts</h3>
+                    <div className="table-wrapper">
+                        <table className="feetable">
                             <thead>
                                 <tr>
-                                    <th>
-                                        Receipt ID
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Amount
-                                    </th>
-
+                                    <th>Receipt ID</th>
+                                    <th>Date</th>
+                                    <th>Amount Paid</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        #BKUER82347
-                                    </td>
-                                    <td>
-                                        15-06-2026
-                                    </td>
-                                    <td>
-                                        ₹95000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        #BKYUI24685
-                                    </td>
-                                    <td>
-                                        28-07-2026
-                                    </td>
-                                    <td>
-                                        ₹26000
-                                    </td>
-                                </tr>
+                                {receipts.map(rec => (
+                                    <tr key={rec.id}>
+                                        <td className="fw-bold">{rec.id}</td>
+                                        <td>{rec.date}</td>
+                                        <td className="amt-bold">{rec.amount}</td>
+                                        <td>{rec.mode}</td>
+                                        <td>
+                                            <span className="status-success-chip">
+                                                <CheckCircle2 size={12} /> {rec.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button
+                                                type="button"
+                                                className="btn-download-rec"
+                                                onClick={() => alert(`Downloading Receipt ${rec.id}...`)}
+                                                title="Download PDF"
+                                            >
+                                                <Download size={13} /> PDF
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
+            {/* Online Payment Modal (Controlled Form) */}
+            {showPayModal && (
+                <div className="modal-backdrop">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <ShieldCheck size={24} color="#10b981" />
+                            <h4>Secure Campus Online Payment</h4>
+                        </div>
+
+                        <form onSubmit={handlePayment} className="pay-modal-form">
+                            <div className="form-group">
+                                <label>Installment / Fee Type</label>
+                                <select
+                                    value={payData.feeType}
+                                    onChange={(e) => setPayData({ ...payData, feeType: e.target.value })}
+                                >
+                                    <option value="Academic Tuition Fee">Academic Tuition Fee</option>
+                                    <option value="Hostel Accommodation Fee">Hostel Accommodation Fee</option>
+                                    <option value="Mess & Dining Charges">Mess &amp; Dining Charges</option>
+                                    <option value="Examination & CAS Fee">Examination &amp; CAS Fee</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Amount to Pay (INR) *</label>
+                                <input
+                                    type="number"
+                                    min="1000"
+                                    max={remainingFee}
+                                    value={payData.amount}
+                                    onChange={(e) => setPayData({ ...payData, amount: e.target.value })}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Payment Method *</label>
+                                <select
+                                    value={payData.paymentMethod}
+                                    onChange={(e) => setPayData({ ...payData, paymentMethod: e.target.value })}
+                                >
+                                    <option value="UPI">UPI (Google Pay, PhonePe, Paytm)</option>
+                                    <option value="Net Banking">Net Banking (HDFC, SBI, ICICI)</option>
+                                    <option value="Debit / Credit Card">Debit / Credit Card</option>
+                                </select>
+                            </div>
+
+                            <div className="modal-actions">
+                                <button type="submit" className="btn-confirm-pay">
+                                    Confirm &amp; Pay ₹{Number(payData.amount || 0).toLocaleString('en-IN')}
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn-cancel-pay"
+                                    onClick={() => setShowPayModal(false)}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
-    )
+    );
 }
-export default Fees
+
+export default Fees;

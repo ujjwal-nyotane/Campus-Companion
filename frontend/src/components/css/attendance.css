@@ -1,0 +1,366 @@
+.attendance-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.attendancehero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.att-metric-box {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.att-metric-box h2 {
+    margin: 0 0 4px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #073a64;
+}
+
+.att-metric-box h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* Subject Table & Calendar Section */
+.subjectandcalender {
+    display: grid;
+    grid-template-columns: 1.6fr 1.2fr;
+    gap: 24px;
+}
+
+.subjectattendance-card,
+.calender-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.card-headline {
+    margin: 0 0 16px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.card-sub {
+    margin: -10px 0 16px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.subjecttable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+}
+
+.subjecttable th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+    padding: 12px;
+    border-bottom: 2px solid #e2ece7;
+}
+
+.subjecttable td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+}
+
+.badge-good {
+    background-color: #dcfce7;
+    color: #15803d;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+.badge-bad {
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+/* Calendar Styles */
+.weekname {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    text-align: center;
+}
+
+.empty-day {
+    height: 32px;
+}
+
+.day-cell {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.day-cell.Present {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.day-cell.Absent {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+.day-cell.dl {
+    background-color: #e0f2fe;
+    color: #3b82f6;
+}
+.day-cell.ml{
+    background-color: #fef3c7;
+    color: #facc15;
+}
+
+.day-cell:hover {
+    transform: scale(1.1);
+}
+
+.cal-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot-green { background-color: #10b981; }
+.dot-red { background-color: #ef4444; }
+.dot-blue { background-color: #3b82f6; }
+.dot-yellow { background-color: #facc15; }
+
+/* Leave Management Section */
+.leave-management-section {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 24px;
+}
+
+.leave-form-card,
+.my-leaves-card {
+    background-color: #ffffff;
+    border: 1px solid #e2ece7;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.alert-leave-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.student-leave-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-grid-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 12px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-field label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.input-field input,
+.input-field select,
+.input-field textarea {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+}
+
+.input-field input:focus,
+.input-field select:focus,
+.input-field textarea:focus {
+    border-color: #10b981;
+    background-color: #ffffff;
+}
+
+.err-txt {
+    font-size: 11px;
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.btn-submit-leave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 4px;
+}
+
+.btn-submit-leave:hover {
+    background-color: #059669;
+}
+
+.myleaves-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.no-leaves-txt {
+    color: #94a3b8;
+    font-size: 13px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.leave-status-item {
+    background-color: #f8fafc;
+    border: 1px solid #e2ece7;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.leave-type-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #073a64;
+    background-color: #e0f2fe;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.pill-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: capitalize;
+}
+
+.pill-status.pending { background-color: #fef3c7; color: #92400e; }
+.pill-status.approved { background-color: #d1fae5; color: #065f46; }
+.pill-status.rejected { background-color: #fee2e2; color: #991b1b; }
+
+.reason-snippet {
+    margin: 4px 0 6px 0;
+    font-size: 12px;
+    color: #334155;
+}
+
+.item-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+    .attendancehero {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .subjectandcalender {
+        grid-template-columns: 1fr;
+    }
+    .leave-management-section {
+        grid-template-columns: 1fr;
+    }
+    .form-grid-row {
+        grid-template-columns: 1fr;
+    }
+}
