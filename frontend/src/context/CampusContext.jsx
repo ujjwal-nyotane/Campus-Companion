@@ -3,6 +3,32 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const CampusContext = createContext(null);
 
+export const normalizeDateKey = (dateInput) => {
+    if (!dateInput) return '';
+    if (typeof dateInput === 'string' && dateInput.includes('-')) {
+        const parts = dateInput.split('-');
+        if (parts.length === 3) {
+            const [y, m, d] = parts;
+            return `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+        }
+    }
+    if (typeof dateInput === 'string' && dateInput.includes('/')) {
+        const parts = dateInput.split('/');
+        if (parts.length === 3) {
+            const [d, m, y] = parts;
+            return `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+        }
+    }
+    const d = new Date(dateInput);
+    if (!isNaN(d.getTime())) {
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+    return String(dateInput);
+};
+
 const initialLeaveRequests = [
     {
         id: 'LV-301',
@@ -54,54 +80,95 @@ const initialAnnouncements = [
         body: 'All students are reminded to clear remaining semester dues before 31st December 2026 to avoid late penalty.'
     }
 ];
+
+const defaultAttendanceRoster = [
+    { id: 1, rollNo: '2510993797', name: 'Ujjwal Nyotane', dept: 'CSE-AIML' },
+    { id: 2, rollNo: '2510993689', name: 'Ujjwal', dept: 'CSE-AIML' },
+    { id: 3, rollNo: '2510993701', name: 'Aman Verma', dept: 'CSE-AIML' },
+    { id: 4, rollNo: '2510993715', name: 'Priya Sharma', dept: 'CSE-AIML' },
+    { id: 5, rollNo: '2510993723', name: 'Rahul Gupta', dept: 'CSE-AIML' },
+    { id: 6, rollNo: '2510993730', name: 'Sneha Patel', dept: 'CSE-AIML' },
+    { id: 7, rollNo: '2510993742', name: 'Vikash Kumar', dept: 'CSE-AIML' },
+    { id: 8, rollNo: '2510993756', name: 'Anjali Yadav', dept: 'CSE-AIML' }
+];
+
 const initialAttendanceData = {
     2510993797: {
-    'Front End Engineering': 
-        {
+        'Front End Engineering': {
             '01/10/2026': 'Present',
             '02/10/2026': 'Present',
             '03/10/2026': 'Absent',
-            '07/10/2026': 'Present',
             '05/10/2026': 'Present',
             '06/10/2026': 'Absent',
+            '07/10/2026': 'Present',
         },
-    'Operating Systems':
-        {
+        'Operating Systems': {
             '01/10/2026': 'Present',
             '02/10/2026': 'Present',
             '03/10/2026': 'Present',
-            '07/10/2026': 'Absent',
             '05/10/2026': 'Present',
             '06/10/2026': 'Present',
+            '07/10/2026': 'Absent',
         },
-    'Database Management System':{
+        'Database Management System': {
             '01/10/2026': 'Present',
             '02/10/2026': 'Present',
             '03/10/2026': 'Absent',
-            '07/10/2026': 'Present',
             '05/10/2026': 'Present',
             '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
         },
-    'Algorithms & Data Structures': {
+        'Algorithms & Data Structures': {
             '01/10/2026': 'Absent',
             '02/10/2026': 'Present',
             '03/10/2026': 'Absent',
-            '07/10/2026': 'Present',
             '05/10/2026': 'Present',
             '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        }
+    },
+    2510993689: {
+        'Front End Engineering': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+        },
+        'Operating Systems': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Absent',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        },
+        'Database Management System': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Absent',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        },
+        'Algorithms & Data Structures': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
         }
     }
 };
 
-
 export const CampusProvider = ({ children }) => {
-    // Leave requests state (Student applies -> Faculty approves/rejects)
     const [leaveRequests, setLeaveRequests] = useState(() => {
         const saved = localStorage.getItem('campus_leaves');
         return saved ? JSON.parse(saved) : initialLeaveRequests;
     });
 
-    // Announcements state (Faculty posts -> Student reads)
     const [announcements, setAnnouncements] = useState(() => {
         const saved = localStorage.getItem('campus_announcements');
         return saved ? JSON.parse(saved) : initialAnnouncements;
@@ -112,8 +179,8 @@ export const CampusProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : initialAttendanceData;
     });
 
+    const [attendanceRoster] = useState(defaultAttendanceRoster);
 
-    // Persistence
     useEffect(() => {
         localStorage.setItem('campus_leaves', JSON.stringify(leaveRequests));
     }, [leaveRequests]);
@@ -126,7 +193,6 @@ export const CampusProvider = ({ children }) => {
         localStorage.setItem('attendance_data', JSON.stringify(attendanceDataState));
     }, [attendanceDataState]);
 
-    // Student actions
     const applyLeave = (leaveData) => {
         const newLeave = {
             id: `LV-${Math.floor(300 + Math.random() * 600)}`,
@@ -138,7 +204,6 @@ export const CampusProvider = ({ children }) => {
         return newLeave;
     };
 
-    // Faculty actions
     const updateLeaveStatus = (id, newStatus) => {
         setLeaveRequests(prev =>
             prev.map(item => item.id === id ? { ...item, status: newStatus } : item)
@@ -159,20 +224,42 @@ export const CampusProvider = ({ children }) => {
         setAnnouncements(prev => prev.filter(item => item.id !== id));
     };
 
-    
-    const updateAttendanceStatus = (studentID,subject,date,newStatus) => {
+    const updateAttendanceStatus = (studentID, subject, date, newStatus) => {
+        const dateKey = normalizeDateKey(date);
+        const sid = String(studentID);
         setAttendanceData(prev => {
-            const studentAttendance = prev[studentID] || [];
-            const updatedStudentAttendance = studentAttendance.map(item => {
-                if (item.subject === subject ) {
-                    const dataa = item[subject] || {};
-                    dataa[date] = newStatus;
-                    return { ...item, [subject]: dataa };
+            const studentData = prev[sid] || {};
+            const subjectData = studentData[subject] || {};
+            return {
+                ...prev,
+                [sid]: {
+                    ...studentData,
+                    [subject]: {
+                        ...subjectData,
+                        [dateKey]: newStatus
+                    }
                 }
-                return item;
+            };
+        });
+    };
 
+    const markBulkAttendance = (subject, date, studentStatusMap) => {
+        const dateKey = normalizeDateKey(date);
+        setAttendanceData(prev => {
+            const next = { ...prev };
+            Object.entries(studentStatusMap).forEach(([studentID, status]) => {
+                const sid = String(studentID);
+                const studentData = next[sid] || {};
+                const subjectData = studentData[subject] || {};
+                next[sid] = {
+                    ...studentData,
+                    [subject]: {
+                        ...subjectData,
+                        [dateKey]: status
+                    }
+                };
             });
-            return { ...prev, [studentID]: updatedStudentAttendance };
+            return next;
         });
     };
 
@@ -186,7 +273,9 @@ export const CampusProvider = ({ children }) => {
                 postAnnouncement,
                 deleteAnnouncement,
                 updateAttendanceStatus,
-                attendanceDataState
+                markBulkAttendance,
+                attendanceDataState,
+                attendanceRoster
             }}
         >
             {children}

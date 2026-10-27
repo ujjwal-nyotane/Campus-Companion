@@ -903,6 +903,20 @@
     color: #475569;
     line-height: 1.4;
 }
+.btn-batch-mark{
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-batch-mark:active {
+    background-color: #e2e8f0;
+}
 
 .pub-footer {
     display: flex;
