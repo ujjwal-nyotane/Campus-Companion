@@ -6,9 +6,6 @@ import {
     Users,
     Calendar,
     Clock,
-    CheckCircle,
-    XCircle,
-    ArrowRight,
     CheckSquare,
     FileText,
     TrendingUp
@@ -16,7 +13,7 @@ import {
 
 function F_dashboard() {
     const { user } = useAuth();
-    const { leaveRequests, updateLeaveStatus, attendanceRoster } = useCampus();
+    const { leaveRequests } = useCampus();
     const facultyName = user?.Name || 'Dr. Sumit';
 
     const pendingLeaves = leaveRequests.filter(l => l.status === 'Pending');
@@ -121,98 +118,10 @@ function F_dashboard() {
                     </div>
                 </div>
 
-                {/* Pending Leave Requests */}
-                <div className="faculty-card">
-                    <div className="card-header-row">
-                        <h3>Student Leave Approvals</h3>
-                        <Link to="/f-leaves" className="view-all-link">
-                            Manage All <ArrowRight size={14} />
-                        </Link>
-                    </div>
-
-                    <div className="leaves-preview-list">
-                        {leaveRequests.slice(0, 3).map(leave => (
-                            <div key={leave.id} className="leave-item-card">
-                                <div className="leave-top">
-                                    <div>
-                                        <h4 className="student-name">{leave.studentName}</h4>
-                                        <span className="roll-dept">{leave.rollNo} &bull; {leave.department}</span>
-                                    </div>
-                                    <span className={`leave-status-pill ${leave.status.toLowerCase()}`}>
-                                        {leave.status}
-                                    </span>
-                                </div>
-                                <p className="leave-reason-txt">"{leave.reason}"</p>
-                                <div className="leave-bottom">
-                                    <span className="leave-dates">{leave.startDate} to {leave.endDate}</span>
-                                    {leave.status === 'Pending' && (
-                                        <div className="leave-action-btns">
-                                            <button
-                                                type="button"
-                                                className="btn-approve"
-                                                onClick={() => updateLeaveStatus(leave.id, 'Approved')}
-                                            >
-                                                <CheckCircle size={13} /> Approve
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn-reject"
-                                                onClick={() => updateLeaveStatus(leave.id, 'Rejected')}
-                                            >
-                                                <XCircle size={13} /> Reject
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                
             </div>
 
-            {/* Attendance Roster Summary */}
-            <div className="faculty-card roster-card">
-                <div className="card-header-row">
-                    <h3>Front End Engineering Attendance Overview</h3>
-                    <Link to="/f-attendance" className="view-all-link">
-                        Full Attendance Roster <ArrowRight size={14} />
-                    </Link>
-                </div>
-                <div className="table-responsive">
-                    <table className="faculty-table">
-                        <thead>
-                            <tr>
-                                <th>Student Name</th>
-                                <th>Roll Number</th>
-                                <th>Department</th>
-                                <th>Subject</th>
-                                <th>Current %</th>
-                                <th>Status Today</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {attendanceRoster.slice(0, 4).map(s => (
-                                <tr key={s.id}>
-                                    <td className="fw-bold">{s.name}</td>
-                                    <td>{s.rollNo}</td>
-                                    <td>{s.dept}</td>
-                                    <td>{s.subject}</td>
-                                    <td>
-                                        <span className={`att-score ${s.attendance >= 85 ? 'high' : 'medium'}`}>
-                                            {s.attendance}%
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className={`roster-status-chip ${s.status.toLowerCase()}`}>
-                                            {s.status}
-                                        </span>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
         </div>
     );
 }

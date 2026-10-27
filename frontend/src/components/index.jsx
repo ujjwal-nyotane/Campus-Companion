@@ -78,7 +78,7 @@ function Index() {
           navigate("/dashboard");
         }
       } else {
-        setAuthError(res.message);
+        setAuthError("Invalid Roll Number / User ID or Password");
         setIsSubmitting(false);
       }
     }, 250);
@@ -195,9 +195,7 @@ function Index() {
             <div className="role-switcher-tabs">
               <button
                 type="button"
-                className={'tab-btn active'}
-                
-              >
+                className={'tab-btn active'}>
                 <GraduationCap size={16} /> Login Portal
               </button>
             </div>
@@ -212,11 +210,6 @@ function Index() {
                   Manage lectures, student attendance, and approvals
               </p>
 
-              {authError && (
-                <div className="alert-error-banner">
-                  <span>{authError}</span>
-                </div>
-              )}
 
               <form onSubmit={handleLoginButton} noValidate className="login-form-inner">
                 {/* Roll Number or Faculty ID input */}
@@ -272,7 +265,11 @@ function Index() {
                   </div>
                   {errors.password && <span className="field-error-msg">{errors.password}</span>}
                 </div>
-
+                { authError && (
+                <div className="alert-error-banner" >
+                  <span>Invalid Roll Number / User ID or Password</span>
+                </div>
+              )}
                 {/* Submit Button */}
                 <button
                   type="submit"

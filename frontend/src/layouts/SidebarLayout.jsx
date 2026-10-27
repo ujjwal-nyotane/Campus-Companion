@@ -11,7 +11,6 @@ import {
     CheckSquare,
     LifeBuoy,
     LogOut,
-    Search,
     Bell,
     Users,
     Clock,
@@ -59,11 +58,7 @@ function SidebarLayout() {
                     </div>
                 </div>
 
-                {/* Sidebar Search Bar */}
-                <div className="sidebar-search">
-                    <Search size={16} className="search-icon" />
-                    <input type="text" placeholder="Search..." aria-label="Search portal" />
-                </div>
+               
 
                 {/* Navigation Links */}
                 <nav className="sidebar-nav">

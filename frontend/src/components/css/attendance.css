@@ -130,14 +130,22 @@
     transition: transform 0.15s ease;
 }
 
-.day-cell.present {
+.day-cell.Present {
     background-color: #d1fae5;
     color: #065f46;
 }
 
-.day-cell.absent {
+.day-cell.Absent {
     background-color: #fee2e2;
     color: #991b1b;
+}
+.day-cell.dl {
+    background-color: #e0f2fe;
+    color: #3b82f6;
+}
+.day-cell.ml{
+    background-color: #fef3c7;
+    color: #facc15;
 }
 
 .day-cell:hover {
@@ -167,6 +175,8 @@
 
 .dot-green { background-color: #10b981; }
 .dot-red { background-color: #ef4444; }
+.dot-blue { background-color: #3b82f6; }
+.dot-yellow { background-color: #facc15; }
 
 /* Leave Management Section */
 .leave-management-section {

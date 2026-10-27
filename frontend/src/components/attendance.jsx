@@ -2,14 +2,13 @@ import { useState } from 'react';
 import './css/attendance.css';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useCampus } from '../context/CampusContext.jsx';
-import { CheckCircle2, PlusCircle, Calendar } from 'lucide-react';
+import { CheckCircle2, PlusCircle, Calendar,ChevronLeft,ChevronRight } from 'lucide-react';
 
-const days = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-const absentDays = new Set([5, 12, 21]);
+
 
 function Attendance() {
     const { user } = useAuth();
-    const { leaveRequests, applyLeave } = useCampus();
+    const { leaveRequests, applyLeave, attendanceDataState } = useCampus();
     const studentName = user?.Name || 'Ujjwal';
     const rollNo = user?.id || '2510993689';
 
@@ -20,6 +19,24 @@ function Attendance() {
         endDate: '',
         leaveType: 'Medical'
     });
+    const [date,setDate] = useState(new Date());
+    const [selectedsubject,setSelectedsubject] = useState("Database Management System"); 
+    const generateCalendarDays = ()=>{
+
+        const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+        const calendarDays = [];
+        for (let i = 0; i < firstDay; i++) {
+            calendarDays.push(<div key={`empty-${i}`} className="empty-day"></div>);
+        }
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dateStr = new Date(date.getFullYear(), date.getMonth(), day).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
+            const status = attendanceDataState?.[user?.id]?.[selectedsubject]?.[dateStr] || '';
+            calendarDays.push(<div key={`day-${day}`} className={"day-cell " + status}> {day}</div>);
+        }
+        return calendarDays;
+
+        };
 
     const [formErrors, setFormErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
@@ -36,6 +53,9 @@ function Attendance() {
         }
         if (!formData.endDate) {
             errors.endDate = 'End date is required.';
+        }
+        if (formData.startDate && formData.endDate && formData.startDate > formData.endDate) {
+            errors.endDate = 'End date cannot be before start date.';
         }
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
@@ -55,7 +75,7 @@ function Attendance() {
         applyLeave({
             studentName,
             rollNo,
-            department: 'CSE-AIML',
+            department: user?.dept || 'CSE-AIML',
             reason: `${formData.leaveType}: ${formData.reason.trim()}`,
             startDate: formData.startDate,
             endDate: formData.endDate
@@ -66,10 +86,34 @@ function Attendance() {
             reason: '',
             startDate: '',
             endDate: '',
-            leaveType: 'Medical'
+            leaveType: ''
         });
         setFormErrors({});
     };
+
+    const calculateclasses = (subject,present) => {
+        const subjectData = attendanceDataState?.[user?.id]?.[subject] || {};
+        console.log("Subject Data:", subjectData,subject);
+        if(subject === undefined || subject === null) {
+            const data = attendanceDataState?.[user?.id] || {};
+            const count = Object.keys(data).reduce((total, sub) => {
+                const subData = data[sub] || {};
+                if(present === true){
+                    return total + Object.values(subData).filter(status => status != 'Absent').length;
+                }
+                return total + Object.keys(subData).length;
+            }
+            , 0);
+            return count;
+                
+        }
+        if(present === true){
+          
+            return Object.values(subjectData).filter(status => status != 'Absent').length;
+        }
+        return Object.keys(subjectData).length;
+    };
+    
 
     // Filter leaves submitted by this student
     const myLeaves = leaveRequests.filter(l => l.rollNo === String(rollNo) || l.studentName.includes('Ujjwal'));
@@ -79,11 +123,15 @@ function Attendance() {
             {/* Hero Metrics */}
             <div className="attendancehero">
                 <div className="att-metric-box">
-                    <h2>150</h2>
+                    <h2>{
+                        calculateclasses()
+                    }</h2>
                     <h3>Total Lectures</h3>
                 </div>
                 <div className="att-metric-box">
-                    <h2>132</h2>
+                    <h2>{
+                        calculateclasses(null,true)
+                    }</h2>
                     <h3>Attended Lectures</h3>
                 </div>
                 <div className="att-metric-box">
@@ -91,7 +139,7 @@ function Attendance() {
                     <h3>Approved Leaves</h3>
                 </div>
                 <div className="att-metric-box">
-                    <h2>88%</h2>
+                    <h2>{Math.round(calculateclasses(null,true) / calculateclasses() * 100) || 0}%</h2>
                     <h3>Overall Turnout</h3>
                 </div>
             </div>
@@ -113,32 +161,39 @@ function Attendance() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr onClick={()=>setSelectedsubject("Front End Engineering")}>
                                     <td className="fw-bold">Front End Engineering</td>
                                     <td>25CSE0203</td>
-                                    <td>40</td>
-                                    <td>44</td>
+                                    <td>{
+                                        calculateclasses("Front End Engineering", true)}</td>
+                                    <td>{
+                                        calculateclasses("Front End Engineering", false)}
+                                    </td>
                                     <td><span className="badge-good">91% (Good)</span></td>
                                 </tr>
-                                <tr>
+                                <tr onClick={()=>setSelectedsubject("Operating Systems")}>
                                     <td className="fw-bold">Operating Systems</td>
                                     <td>25CSE0207</td>
-                                    <td>35</td>
-                                    <td>40</td>
+                                    <td>{
+                                        calculateclasses("Operating Systems", true)
+                                    }</td>
+                                    <td>{
+                                        calculateclasses("Operating Systems", false)
+                                    }</td>
                                     <td><span className="badge-good">87.5% (Good)</span></td>
                                 </tr>
-                                <tr>
+                                <tr onClick={()=>setSelectedsubject("Database Management System")}>
                                     <td className="fw-bold">Database Management System</td>
                                     <td>25CSE0209</td>
-                                    <td>40</td>
-                                    <td>48</td>
+                                    <td>{calculateclasses("Database Management System", true)}</td>
+                                    <td>{calculateclasses("Database Management System", false)}</td>
                                     <td><span className="badge-good">83.3% (Good)</span></td>
                                 </tr>
-                                <tr>
+                                <tr onClick={()=>setSelectedsubject("Algorithms & Data Structures")}>
                                     <td className="fw-bold">Algorithms &amp; Data Structures</td>
                                     <td>25CSE0205</td>
-                                    <td>34</td>
-                                    <td>40</td>
+                                    <td>{calculateclasses("Algorithms & Data Structures", true)}</td>
+                                    <td>{calculateclasses("Algorithms & Data Structures", false)}</td>
                                     <td><span className="badge-good">85% (Good)</span></td>
                                 </tr>
                             </tbody>
@@ -148,28 +203,30 @@ function Attendance() {
 
                 {/* Calendar View */}
                 <div className="calender-card">
-                    <h3 className="card-headline">August Attendance Log</h3>
+                    <button className="arrow-btn" onClick={() => setDate(new Date(date.getFullYear(), date.getMonth() - 1, date.getDate()))}>
+                        <ChevronLeft size={16} />
+                    </button>
+                    <h3 className="card-headline">{date.toLocaleString('en-US', { month: 'long', year: 'numeric' })} Attendance Log</h3>
+                     <button className="arrow-btn" onClick={() => setDate(new Date(date.getFullYear(), date.getMonth() + 1, date.getDate()))}>
+                        <ChevronRight size={16} />
+                    </button>
                     <div className="weekname">
                         <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
                     </div>
                     <div className="days">
-                        {days.map((i, idx) => (
-                            i === 0 ? (
-                                <div key={`empty-${idx}`} className="empty-day"></div>
-                            ) : (
-                                <div
-                                    key={i}
-                                    className={`day-cell ${absentDays.has(i) ? 'absent' : 'present'}`}
-                                    title={absentDays.has(i) ? `Aug ${i}: Absent` : `Aug ${i}: Present`}
-                                >
-                                    <span>{i}</span>
-                                </div>
-                            )
-                        ))}
+                      {
+                        
+                        generateCalendarDays()
+                      }
+                    
+                        
+                        
                     </div>
                     <div className="cal-legend">
                         <span className="legend-item"><span className="dot dot-green"></span> Present</span>
                         <span className="legend-item"><span className="dot dot-red"></span> Absent</span>
+                        <span className="legend-item"><span className="dot dot-blue"></span> DL</span>
+                        <span className="legend-item"><span className="dot dot-yellow"></span> ML</span>
                     </div>
                 </div>
             </div>
@@ -198,9 +255,9 @@ function Attendance() {
                                     onChange={handleInputChange}
                                 >
                                     <option value="Medical">Medical Leave</option>
-                                    <option value="Academic Event / Hackathon">Academic Event / Hackathon</option>
-                                    <option value="Family / Personal">Family / Personal Emergency</option>
-                                    <option value="Duty Leave">Official Duty Leave</option>
+                                    <option value="Duty">Academic Event / Hackathon</option>
+                                    <option value="Medical">Family / Personal Emergency</option>
+                                    <option value="Duty">Official Duty Leave</option>
                                 </select>
                             </div>
 

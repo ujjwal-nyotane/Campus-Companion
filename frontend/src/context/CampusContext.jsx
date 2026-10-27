@@ -54,14 +54,45 @@ const initialAnnouncements = [
         body: 'All students are reminded to clear remaining semester dues before 31st December 2026 to avoid late penalty.'
     }
 ];
+const initialAttendanceData = {
+    2510993797: {
+    'Front End Engineering': 
+        {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Absent',
+        },
+    'Operating Systems':
+        {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '07/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+        },
+    'Database Management System':{
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+        },
+    'Algorithms & Data Structures': {
+            '01/10/2026': 'Absent',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+        }
+    }
+};
 
-const initialRoster = [
-    { id: '2510993689', name: 'Ujjwal', rollNo: '2510993689', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 90, status: 'Present' },
-    { id: '2510993797', name: 'Ujjwal Nyotane', rollNo: '2510993797', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 95, status: 'Present' },
-    { id: '2510993801', name: 'Aarav Sharma', rollNo: '2510993801', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 82, status: 'Absent' },
-    { id: '2510993815', name: 'Diya Patel', rollNo: '2510993815', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 88, status: 'Present' },
-    { id: '2510993822', name: 'Rohan Verma', rollNo: '2510993822', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 78, status: 'Absent' }
-];
 
 export const CampusProvider = ({ children }) => {
     // Leave requests state (Student applies -> Faculty approves/rejects)
@@ -76,11 +107,11 @@ export const CampusProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : initialAnnouncements;
     });
 
-    // Attendance roster for faculty marking
-    const [attendanceRoster, setAttendanceRoster] = useState(() => {
-        const saved = localStorage.getItem('campus_roster');
-        return saved ? JSON.parse(saved) : initialRoster;
+    const [attendanceDataState, setAttendanceData] = useState(() => {
+        const saved = localStorage.getItem('attendance_data');
+        return saved ? JSON.parse(saved) : initialAttendanceData;
     });
+
 
     // Persistence
     useEffect(() => {
@@ -92,8 +123,8 @@ export const CampusProvider = ({ children }) => {
     }, [announcements]);
 
     useEffect(() => {
-        localStorage.setItem('campus_roster', JSON.stringify(attendanceRoster));
-    }, [attendanceRoster]);
+        localStorage.setItem('attendance_data', JSON.stringify(attendanceDataState));
+    }, [attendanceDataState]);
 
     // Student actions
     const applyLeave = (leaveData) => {
@@ -128,16 +159,21 @@ export const CampusProvider = ({ children }) => {
         setAnnouncements(prev => prev.filter(item => item.id !== id));
     };
 
-    const toggleAttendanceStatus = (studentId) => {
-        setAttendanceRoster(prev =>
-            prev.map(s => {
-                if (s.id === studentId) {
-                    const nextStatus = s.status === 'Present' ? 'Absent' : 'Present';
-                    return { ...s, status: nextStatus };
+    
+    const updateAttendanceStatus = (studentID,subject,date,newStatus) => {
+        setAttendanceData(prev => {
+            const studentAttendance = prev[studentID] || [];
+            const updatedStudentAttendance = studentAttendance.map(item => {
+                if (item.subject === subject ) {
+                    const dataa = item[subject] || {};
+                    dataa[date] = newStatus;
+                    return { ...item, [subject]: dataa };
                 }
-                return s;
-            })
-        );
+                return item;
+
+            });
+            return { ...prev, [studentID]: updatedStudentAttendance };
+        });
     };
 
     return (
@@ -149,8 +185,8 @@ export const CampusProvider = ({ children }) => {
                 announcements,
                 postAnnouncement,
                 deleteAnnouncement,
-                attendanceRoster,
-                toggleAttendanceStatus
+                updateAttendanceStatus,
+                attendanceDataState
             }}
         >
             {children}

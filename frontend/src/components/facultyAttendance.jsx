@@ -4,7 +4,7 @@ import { useCampus } from '../context/CampusContext.jsx';
 import { Check, X, Search, Save, CheckCircle2 } from 'lucide-react';
 
 function FacultyAttendance() {
-    const { attendanceRoster, toggleAttendanceStatus } = useCampus();
+    const { attendanceRoster = [], toggleAttendanceStatus = () => {} } = useCampus();
 
     const [selectedSubject, setSelectedSubject] = useState('Front End Engineering');
     const [selectedDate, setSelectedDate] = useState('2026-08-24');
@@ -21,7 +21,7 @@ function FacultyAttendance() {
 
     const presentCount = attendanceRoster.filter(s => s.status === 'Present').length;
     const absentCount = attendanceRoster.filter(s => s.status === 'Absent').length;
-    const attPercentage = Math.round((presentCount / attendanceRoster.length) * 100);
+    const attPercentage = attendanceRoster.length > 0 ? Math.round((presentCount / attendanceRoster.length) * 100) : 0;
 
     const handleSave = () => {
         setSaveSuccess(`Attendance for ${selectedSubject} on ${selectedDate} saved successfully!`);
@@ -139,7 +139,7 @@ function FacultyAttendance() {
                                 <th>Student Name</th>
                                 <th>Department</th>
                                 <th>Term Attendance</th>
-                                <th>Today's Status</th>
+                                <th>Today&apos;s Status</th>
                                 <th>Toggle Action</th>
                             </tr>
                         </thead>

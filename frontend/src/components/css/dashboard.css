@@ -1,4 +1,10 @@
 /* Dashboard Main Grid Layout */
+.dashboard-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .dashboard-layout-grid {
     display: grid;
     grid-template-columns: 2.2fr 1fr;
@@ -224,13 +230,6 @@
     margin-top: 10px;
 }
 
-.later-card {
-    background-color: #f8fafc;
-    border: 1px solid #e2ece7;
-    border-radius: 12px;
-    padding: 14px;
-}
-
 .later-card-top {
     display: flex;
     justify-content: space-between;
@@ -272,33 +271,11 @@
     color: #94a3b8;
 }
 
-.add-event-dashed-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    border: 1.5px dashed #cbd5e1;
-    background-color: transparent;
-    border-radius: 12px;
-    padding: 14px;
-    color: #64748b;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.add-event-dashed-card:hover {
-    border-color: #10b981;
-    color: #059669;
-    background-color: #f0fdf4;
-}
 
 /* Dashboard Bottom Grid: Notices + Attendance */
 .dashboard-bottom-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -470,6 +447,8 @@
     font-size: 13px;
     font-weight: 700;
     color: #334155;
+    min-width: 100px;
+    text-align: center;
 }
 
 .arrow-btn {
@@ -480,6 +459,7 @@
     display: flex;
     align-items: center;
     padding: 2px;
+    
 }
 
 .calendar-grid {
