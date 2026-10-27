@@ -19,43 +19,9 @@ import NotFound from './components/notfound.jsx';
 import SidebarLayout from './layouts/SidebarLayout.jsx';
 
 function App() {
+    
     return (
-        <Routes>
-            {/* Public Route - Login Page */}
-            <Route path="/" element={<Index />} />
-
-            {/* Protected Routes Hierarchy */}
-            <Route element={<ProtectedRoute />}>
-                {/* Student Pages - Wrapped in SidebarLayout */}
-                <Route element={<RoleAuth assignedRole="Student" />}>
-                    <Route element={<SidebarLayout />}>
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/courses" element={<Courses />} />
-                        <Route path="/attendance" element={<Attendance />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/timetable" element={<Timetable />} />
-                        <Route path="/fees" element={<Fees />} />
-                        <Route path="/hostel" element={<Hostel />} />
-                        <Route path="/support" element={<Support />} />
-                        <Route path="/grades" element={<Grades />} />
-                    </Route>
-                </Route>
-
-                {/* Faculty Pages - Wrapped in SidebarLayout */}
-                <Route element={<RoleAuth assignedRole="Faculty" />}>
-                    <Route element={<SidebarLayout />}>
-                        <Route path="/f-dashboard" element={<F_dashboard />} />
-                        <Route path="/f-attendance" element={<FacultyAttendance />} />
-                        <Route path="/f-leaves" element={<FacultyLeaves />} />
-                        <Route path="/f-notices" element={<FacultyNotices />} />
-                    </Route>
-                </Route>
-            </Route>
-
-            {/* 404 Catch-All Page */}
-            <Route path="*" element={<NotFound />} />
-        </Routes>
-    );
+        <ProtectedRoute></ProtectedRoute>
+    )
 }
-
-export default App;
+export default App

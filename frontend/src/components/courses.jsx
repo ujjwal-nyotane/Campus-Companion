@@ -11,7 +11,7 @@ const coursesData = [
         credits: 4,
         type: 'Core Lab & Theory',
         semester: 'Semester 3',
-        attendance: '92%',
+        
         description: 'Advanced web development with React 19, Component architecture, Context API, React Router, and state management.',
         modules: ['React Fundamentals & Hooks', 'React Router & Navigation Layouts', 'Context API & Global State', 'Form Handling & Validation'],
         materials: ['Module 1: React 19 Slides.pdf', 'Lab Assignment 2: Router & Outlets.zip', 'Component Lifecycle Notes.pdf']
@@ -24,7 +24,7 @@ const coursesData = [
         credits: 4,
         type: 'Core Theory',
         semester: 'Semester 3',
-        attendance: '85%',
+        
         description: 'Design and analysis of efficient algorithms, divide-and-conquer, greedy techniques, dynamic programming, and graph theory.',
         modules: ['Asymptotic Analysis & Recurrences', 'Divide and Conquer & Sorting', 'Dynamic Programming', 'Graph Algorithms & Shortest Path'],
         materials: ['Syllabus & Lecture Schedule.pdf', 'Dynamic Programming Problem Set.pdf']
@@ -37,7 +37,7 @@ const coursesData = [
         credits: 4,
         type: 'Core Lab & Theory',
         semester: 'Semester 3',
-        attendance: '86%',
+        
         description: 'Relational data model, SQL querying, normalization (1NF to BCNF), indexing, transactions, and ACID properties.',
         modules: ['Entity-Relationship Data Modeling', 'Relational Algebra & Advanced SQL', 'Normalization & Schema Refinement', 'Transactions & Concurrency Control'],
         materials: ['SQL Practice Query Bank.sql', 'Normalization Cheat Sheet.pdf']
@@ -50,7 +50,7 @@ const coursesData = [
         credits: 3,
         type: 'Core Theory',
         semester: 'Semester 3',
-        attendance: '88%',
+        
         description: 'Process management, thread synchronization, deadlocks, memory management, virtual memory paging, and file systems.',
         modules: ['Process Synchronization & Mutexes', 'CPU Scheduling Algorithms', 'Virtual Memory & Page Replacement', 'File System Implementation'],
         materials: ['OS Cheatsheet & Viva Prep.pdf', 'POSIX Threads Lab Sheet.pdf']
@@ -63,7 +63,7 @@ const coursesData = [
         credits: 2,
         type: 'University Elective',
         semester: 'Semester 3',
-        attendance: '94%',
+        
         description: 'Idea validation, business model canvas, venture capital pitching, intellectual property rights, and startup scaling.',
         modules: ['Opportunity Discovery & Empathy Mapping', 'Business Model Canvas', 'Financial Projections & Pitch Decks'],
         materials: ['Pitch Deck Template.pptx', 'Case Studies in Tech Ventures.pdf']
@@ -117,7 +117,7 @@ function Courses() {
                             </div>
                             <div className="card-bottom">
                                 <span className="course-type">{course.type}</span>
-                                <span className="att-tag">Att: {course.attendance}</span>
+                                
                             </div>
                         </div>
                     ))}
@@ -136,10 +136,7 @@ function Courses() {
                                 <span className="lbl">Credits</span>
                                 <span className="val">{selectedCourse.credits}</span>
                             </div>
-                            <div className="meta-col">
-                                <span className="lbl">Attendance</span>
-                                <span className="val green">{selectedCourse.attendance}</span>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -160,27 +157,7 @@ function Courses() {
                         </div>
                     </div>
 
-                    <div className="detail-section">
-                        <h4>Course Materials &amp; Downloads</h4>
-                        <div className="materials-list">
-                            {selectedCourse.materials.map((mat, idx) => (
-                                <div key={idx} className="material-item">
-                                    <div className="mat-info">
-                                        <FileText size={18} className="mat-icon" />
-                                        <span>{mat}</span>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        className="btn-download"
-                                        onClick={() => alert(`Downloading: ${mat}`)}
-                                    >
-                                        <Download size={14} />
-                                        <span>Download</span>
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('role', student.Role);
             return { success: true, role: student.Role, user: student };
         }
-        return { success: false, message: 'Invalid Roll Number / User ID or Password' };
+        return { success: false};
     };
 
     const logout = () => {

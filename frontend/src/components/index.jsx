@@ -24,7 +24,7 @@ function Index() {
   const { login, isLoggedIn, role } = useAuth();
 
   // Active role tab: 'Student' or 'Faculty'
-  const [activeTab, setActiveTab] = useState("Student");
+  
 
   // Controlled Form State
   const [userId, setUserId] = useState("");
@@ -48,7 +48,7 @@ function Index() {
   const validate = () => {
     const errs = {};
     if (!userId.trim()) {
-      errs.userId = activeTab === "Student" ? "Please enter your Roll Number" : "Please enter your Faculty ID";
+      errs.userId =  "Please enter your ID";
     }
     if (!password) {
       errs.password = "Password is required";
@@ -78,28 +78,14 @@ function Index() {
           navigate("/dashboard");
         }
       } else {
-        setAuthError(res.message);
+        setAuthError("Invalid Roll Number / User ID or Password");
         setIsSubmitting(false);
       }
     }, 250);
   };
 
-  // Switch Role tab and optionally prefill credentials
-  const switchRole = (newRole) => {
-    setActiveTab(newRole);
-    setErrors({});
-    setAuthError("");
-    if (newRole === "Student") {
-      setUserId("2510993797");
-      setPassword("1234");
-    } else {
-      setUserId("CET0001");
-      setPassword("1234");
-    }
-  };
 
-  const prefillQuickDemo = (id, pwd, userRole) => {
-    setActiveTab(userRole);
+  const prefillQuickDemo = (id, pwd) => {
     setUserId(id);
     setPassword(pwd);
     setErrors({});
@@ -155,8 +141,8 @@ function Index() {
             <div className="demo-buttons-row">
               <button
                 type="button"
-                className={`btn-demo-chip ${activeTab === 'Student' && userId === '2510993797' ? 'active-chip' : ''}`}
-                onClick={() => prefillQuickDemo("2510993797", "1234", "Student")}
+                className={'btn-demo-chip '}
+                onClick={() => prefillQuickDemo("2510993797", "1234")}
               >
                 <GraduationCap size={16} />
                 <div className="chip-details">
@@ -167,8 +153,8 @@ function Index() {
 
               <button
                 type="button"
-                className={`btn-demo-chip ${activeTab === 'Faculty' ? 'active-chip' : ''}`}
-                onClick={() => prefillQuickDemo("CET0001", "1234", "Faculty")}
+                className={'btn-demo-chip '}
+                onClick={() => prefillQuickDemo("CET0001", "1234" )}
               >
                 <ShieldCheck size={16} />
                 <div className="chip-details">
@@ -209,48 +195,34 @@ function Index() {
             <div className="role-switcher-tabs">
               <button
                 type="button"
-                className={`tab-btn ${activeTab === 'Student' ? 'active' : ''}`}
-                onClick={() => switchRole('Student')}
-              >
-                <GraduationCap size={16} /> Student Portal
-              </button>
-              <button
-                type="button"
-                className={`tab-btn ${activeTab === 'Faculty' ? 'active' : ''}`}
-                onClick={() => switchRole('Faculty')}
-              >
-                <ShieldCheck size={16} /> Faculty Portal
+                className={'tab-btn active'}>
+                <GraduationCap size={16} /> Login Portal
               </button>
             </div>
 
             <div className="login-card-body">
               <h2 className="login-title">
-                {activeTab === 'Student' ? 'Student Sign In' : 'Faculty Sign In'}
+                    Sign In
               </h2>
               <p className="login-subtitle">
-                {activeTab === 'Student'
-                  ? 'Access your academics, courses, and attendance'
-                  : 'Manage lectures, student attendance, and approvals'}
+                
+                   Access your academics, courses, and attendance &&
+                  Manage lectures, student attendance, and approvals
               </p>
 
-              {authError && (
-                <div className="alert-error-banner">
-                  <span>{authError}</span>
-                </div>
-              )}
 
               <form onSubmit={handleLoginButton} noValidate className="login-form-inner">
                 {/* Roll Number or Faculty ID input */}
                 <div className="form-control-group">
                   <label htmlFor="userId">
-                    {activeTab === 'Student' ? 'University Roll Number' : 'Faculty Employee ID'}
+                    User ID'
                   </label>
                   <div className={`input-field-wrap ${errors.userId ? 'has-error' : ''}`}>
                     <User size={18} className="field-icon" />
                     <input
                       id="userId"
                       type="text"
-                      placeholder={activeTab === 'Student' ? 'e.g. 2510993797' : 'e.g. CET0001'}
+                      placeholder='User ID'
                       value={userId}
                       onChange={(e) => {
                         setUserId(e.target.value);
@@ -259,7 +231,7 @@ function Index() {
                       }}
                     />
                   </div>
-                  {errors.userId && <span className="field-error-msg">{errors.userId}</span>}
+                  {errors.userId && <span className="field-error-msg " >{errors.userId}</span>}
                 </div>
 
                 {/* Password input with show/hide toggle */}
@@ -293,7 +265,11 @@ function Index() {
                   </div>
                   {errors.password && <span className="field-error-msg">{errors.password}</span>}
                 </div>
-
+                { authError && (
+                <div className="alert-error-banner" >
+                  <span>Invalid Roll Number / User ID or Password</span>
+                </div>
+              )}
                 {/* Submit Button */}
                 <button
                   type="submit"
@@ -304,7 +280,7 @@ function Index() {
                     'Signing In...'
                   ) : (
                     <>
-                      <span>Sign In to {activeTab} Portal</span>
+                      <span>Sign In Portal</span>
                       <ArrowRight size={16} />
                     </>
                   )}

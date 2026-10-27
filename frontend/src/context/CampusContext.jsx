@@ -3,6 +3,32 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const CampusContext = createContext(null);
 
+export const normalizeDateKey = (dateInput) => {
+    if (!dateInput) return '';
+    if (typeof dateInput === 'string' && dateInput.includes('-')) {
+        const parts = dateInput.split('-');
+        if (parts.length === 3) {
+            const [y, m, d] = parts;
+            return `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+        }
+    }
+    if (typeof dateInput === 'string' && dateInput.includes('/')) {
+        const parts = dateInput.split('/');
+        if (parts.length === 3) {
+            const [d, m, y] = parts;
+            return `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+        }
+    }
+    const d = new Date(dateInput);
+    if (!isNaN(d.getTime())) {
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+    return String(dateInput);
+};
+
 const initialLeaveRequests = [
     {
         id: 'LV-301',
@@ -55,34 +81,106 @@ const initialAnnouncements = [
     }
 ];
 
-const initialRoster = [
-    { id: '2510993689', name: 'Ujjwal', rollNo: '2510993689', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 90, status: 'Present' },
-    { id: '2510993797', name: 'Ujjwal Nyotane', rollNo: '2510993797', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 95, status: 'Present' },
-    { id: '2510993801', name: 'Aarav Sharma', rollNo: '2510993801', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 82, status: 'Absent' },
-    { id: '2510993815', name: 'Diya Patel', rollNo: '2510993815', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 88, status: 'Present' },
-    { id: '2510993822', name: 'Rohan Verma', rollNo: '2510993822', dept: 'CSE-AIML', subject: 'Front End Engineering', attendance: 78, status: 'Absent' }
+const defaultAttendanceRoster = [
+    { id: 1, rollNo: '2510993797', name: 'Ujjwal Nyotane', dept: 'CSE-AIML' },
+    { id: 2, rollNo: '2510993689', name: 'Ujjwal', dept: 'CSE-AIML' },
+    { id: 3, rollNo: '2510993701', name: 'Aman Verma', dept: 'CSE-AIML' },
+    { id: 4, rollNo: '2510993715', name: 'Priya Sharma', dept: 'CSE-AIML' },
+    { id: 5, rollNo: '2510993723', name: 'Rahul Gupta', dept: 'CSE-AIML' },
+    { id: 6, rollNo: '2510993730', name: 'Sneha Patel', dept: 'CSE-AIML' },
+    { id: 7, rollNo: '2510993742', name: 'Vikash Kumar', dept: 'CSE-AIML' },
+    { id: 8, rollNo: '2510993756', name: 'Anjali Yadav', dept: 'CSE-AIML' }
 ];
 
+const initialAttendanceData = {
+    2510993797: {
+        'Front End Engineering': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+        },
+        'Operating Systems': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Absent',
+        },
+        'Database Management System': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        },
+        'Algorithms & Data Structures': {
+            '01/10/2026': 'Absent',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        }
+    },
+    2510993689: {
+        'Front End Engineering': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Absent',
+            '07/10/2026': 'Present',
+        },
+        'Operating Systems': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Absent',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        },
+        'Database Management System': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Present',
+            '05/10/2026': 'Absent',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        },
+        'Algorithms & Data Structures': {
+            '01/10/2026': 'Present',
+            '02/10/2026': 'Present',
+            '03/10/2026': 'Absent',
+            '05/10/2026': 'Present',
+            '06/10/2026': 'Present',
+            '07/10/2026': 'Present',
+        }
+    }
+};
+
 export const CampusProvider = ({ children }) => {
-    // Leave requests state (Student applies -> Faculty approves/rejects)
     const [leaveRequests, setLeaveRequests] = useState(() => {
         const saved = localStorage.getItem('campus_leaves');
         return saved ? JSON.parse(saved) : initialLeaveRequests;
     });
 
-    // Announcements state (Faculty posts -> Student reads)
     const [announcements, setAnnouncements] = useState(() => {
         const saved = localStorage.getItem('campus_announcements');
         return saved ? JSON.parse(saved) : initialAnnouncements;
     });
 
-    // Attendance roster for faculty marking
-    const [attendanceRoster, setAttendanceRoster] = useState(() => {
-        const saved = localStorage.getItem('campus_roster');
-        return saved ? JSON.parse(saved) : initialRoster;
+    const [attendanceDataState, setAttendanceData] = useState(() => {
+        const saved = localStorage.getItem('attendance_data');
+        return saved ? JSON.parse(saved) : initialAttendanceData;
     });
 
-    // Persistence
+    const [attendanceRoster] = useState(defaultAttendanceRoster);
+
     useEffect(() => {
         localStorage.setItem('campus_leaves', JSON.stringify(leaveRequests));
     }, [leaveRequests]);
@@ -92,10 +190,9 @@ export const CampusProvider = ({ children }) => {
     }, [announcements]);
 
     useEffect(() => {
-        localStorage.setItem('campus_roster', JSON.stringify(attendanceRoster));
-    }, [attendanceRoster]);
+        localStorage.setItem('attendance_data', JSON.stringify(attendanceDataState));
+    }, [attendanceDataState]);
 
-    // Student actions
     const applyLeave = (leaveData) => {
         const newLeave = {
             id: `LV-${Math.floor(300 + Math.random() * 600)}`,
@@ -107,7 +204,6 @@ export const CampusProvider = ({ children }) => {
         return newLeave;
     };
 
-    // Faculty actions
     const updateLeaveStatus = (id, newStatus) => {
         setLeaveRequests(prev =>
             prev.map(item => item.id === id ? { ...item, status: newStatus } : item)
@@ -128,16 +224,43 @@ export const CampusProvider = ({ children }) => {
         setAnnouncements(prev => prev.filter(item => item.id !== id));
     };
 
-    const toggleAttendanceStatus = (studentId) => {
-        setAttendanceRoster(prev =>
-            prev.map(s => {
-                if (s.id === studentId) {
-                    const nextStatus = s.status === 'Present' ? 'Absent' : 'Present';
-                    return { ...s, status: nextStatus };
+    const updateAttendanceStatus = (studentID, subject, date, newStatus) => {
+        const dateKey = normalizeDateKey(date);
+        const sid = String(studentID);
+        setAttendanceData(prev => {
+            const studentData = prev[sid] || {};
+            const subjectData = studentData[subject] || {};
+            return {
+                ...prev,
+                [sid]: {
+                    ...studentData,
+                    [subject]: {
+                        ...subjectData,
+                        [dateKey]: newStatus
+                    }
                 }
-                return s;
-            })
-        );
+            };
+        });
+    };
+
+    const markBulkAttendance = (subject, date, studentStatusMap) => {
+        const dateKey = normalizeDateKey(date);
+        setAttendanceData(prev => {
+            const next = { ...prev };
+            Object.entries(studentStatusMap).forEach(([studentID, status]) => {
+                const sid = String(studentID);
+                const studentData = next[sid] || {};
+                const subjectData = studentData[subject] || {};
+                next[sid] = {
+                    ...studentData,
+                    [subject]: {
+                        ...subjectData,
+                        [dateKey]: status
+                    }
+                };
+            });
+            return next;
+        });
     };
 
     return (
@@ -149,8 +272,10 @@ export const CampusProvider = ({ children }) => {
                 announcements,
                 postAnnouncement,
                 deleteAnnouncement,
-                attendanceRoster,
-                toggleAttendanceStatus
+                updateAttendanceStatus,
+                markBulkAttendance,
+                attendanceDataState,
+                attendanceRoster
             }}
         >
             {children}
